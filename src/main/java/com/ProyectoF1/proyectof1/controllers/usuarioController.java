@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ProyectoF1.proyectof1.model.Usuario;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 /**
  *
@@ -28,15 +30,15 @@ public class usuarioController {
     public ArrayList<Usuario> getAllUser(){
         return usuarioService.getAllUser();
     }
-    @GetMapping("/find/{id}")
+    @PostMapping("/find/{id}")
     public Optional<Usuario> getUserById(@PathVariable("id")long id){
     return usuarioService.getUserById(id);
     }
-     @GetMapping("/findmail/{id}")
+     @PostMapping("/findmail/{id}")
     public boolean getUserByEmail(@PathVariable("id")String id){
     return usuarioService.getUserByEmail(id);
     }
-    @GetMapping("/save")
+    @PostMapping("/save")
     public String saveUser(@RequestBody Usuario u){
          //return u;
          if (usuarioService.saveUser(u)== true){
@@ -46,7 +48,7 @@ public class usuarioController {
          }
           
     }
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteUserById(@PathVariable("id") long id){
         if(usuarioService.deleteUserById(id)){
             return("Usuario no eliminado");
