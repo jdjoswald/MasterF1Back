@@ -14,45 +14,47 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("user")
 public class usuarioController {
     @Autowired
-    IUsuarioService IUsuarioService;
+    IUsuarioService UsuarioService;
     
     @GetMapping("/all")
     public List<Usuario> buscarTodos(){
-        return IUsuarioService.buscarTodos();
+        return UsuarioService.buscarTodos();
     }
 
     @GetMapping("/find/{id}")
     public Usuario buscarUsuarioPorid(@PathVariable("id")Integer id){
-    return IUsuarioService.buscarUsuarioPorid(id);
+    return UsuarioService.buscarUsuarioPorid(id);
     }
 
 
     @GetMapping("/find/{email}")
     public Usuario buscarUsuarioPorEmail(@PathVariable("email")String email){
-    return IUsuarioService.buscarUsuarioporEmail(email);
+    return UsuarioService.buscarUsuarioporEmail(email);
     }
 
     @GetMapping("/login/{email}/{passwd}")
     public boolean login(@PathVariable("email")String email, @PathVariable("passwd")String passwd){
-        if (IUsuarioService.buscarUsuarioPorEmailAndPasswd(email, passwd)!= null){
+        if (UsuarioService.buscarUsuarioPorEmailAndPasswd(email, passwd)!= null){
             return true;
-        };
+        }
         return false;
     }
 
     @PostMapping("/save")
     public boolean crearUsuario(@RequestBody Usuario usuario){
-       return IUsuarioService.guardarUsuario(usuario);
+        System.out.println(usuario.getId_Rol().getId());
+       System.out.println("Pasando por controller");
+       return UsuarioService.guardarUsuario(usuario);
     }
 
     @PutMapping("/save")
     public boolean actualizarCurso(@RequestBody Usuario usuario) {
-        return IUsuarioService.actualizarUsuario(usuario);
+        return UsuarioService.actualizarUsuario(usuario);
     }
 
     @DeleteMapping ("/delete/{email}")
     public boolean deleteUserById(@PathVariable("email") String email){
-       return IUsuarioService.eliminarUsuario(email);
+       return UsuarioService.eliminarUsuario(email);
     }
 
 

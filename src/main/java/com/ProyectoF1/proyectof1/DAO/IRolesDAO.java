@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IRolesDAO {
 
-    public Rol buscarUsuarioPorid(Integer id);
+   /* public Rol buscarUsuarioPorid(Integer id);*/
 
     public Rol buscarRolPorNombre(String nombre);
 

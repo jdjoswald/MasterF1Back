@@ -39,13 +39,13 @@ public class IUsuariosImpl implements IUsuariosDAO{
     }
     @Override
     public Usuario buscarUsuarioporEmail(String email) {
-        return usuariosJPA.findByEmail( email);
+        return usuariosJPA.findByEmail(email);
     }
 
-    @Override
+    /*@Override
     public List<Usuario> buscarUsuariosPorRol(Integer idRol) {
-        return usuariosJPA.findByIdRol(idRol);
-    }
+        return usuariosJPA.findById_Rol(idRol);
+    }*/
 
     @Override
     public List<Usuario> buscarUsuariosPorFlagDef(boolean flag) {
@@ -53,7 +53,20 @@ public class IUsuariosImpl implements IUsuariosDAO{
     }
 
     @Override
-    public void guardarUsuario(Usuario usuario) {usuariosJPA.save(usuario);    }
+    public void guardarUsuario(Usuario usuario) {
+        System.out.println(usuario.getId());
+        System.out.println(usuario.getUsuario());
+        System.out.println(usuario.getNombre());
+        System.out.println(usuario.getEmail());
+        System.out.println(usuario.getContrasena());
+        System.out.println(usuario.getId_Rol().getId());
+        System.out.println(usuario.getId_Rol().getRol());
+        System.out.println(usuario.getDefinitivo());
+
+        usuariosJPA.save(usuario);
+
+
+    }
 
     @Override
     public void eliminarUsuario(Integer id) {usuariosJPA.deleteById(id);  }

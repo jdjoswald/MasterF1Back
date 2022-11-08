@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsuarioServicesimpl implements IUsuarioService {
+public class UsuarioServicesimpl implements IUsuarioService{
 
     @Autowired
     IUsuariosDAO usuariosDAO;
@@ -49,10 +49,10 @@ public class UsuarioServicesimpl implements IUsuarioService {
         return usuariosDAO.buscarUsuarioporEmail(email);
     }
 
-    @Override
+   /* @Override
     public List<Usuario> buscarUsuariosPorRol(Integer idRol) {
         return usuariosDAO.buscarUsuariosPorRol(idRol);
-    }
+    }*/
 
     @Override
     public List<Usuario> buscarUsuariosPorFlagDef(boolean flag) {
@@ -61,22 +61,23 @@ public class UsuarioServicesimpl implements IUsuarioService {
 
     @Override
     public boolean guardarUsuario(Usuario usuario) {
-        if (usuariosDAO.buscarUsuarioporEmail(usuario.getEmail())== null){
+        System.out.println("Pasando por guardar");
+       /* if (usuariosDAO.buscarUsuarioporEmail(usuario.getEmail())== null){}*/
             usuariosDAO.guardarUsuario(usuario);
             return true;
-        }
 
-        return false;
+
+       /* return false;*/
     }
 
-    @Override
+    /*@Override
     public boolean guardarUsuario(String name, String email, String passwd, Integer idRol) {
         if(usuariosDAO.buscarUsuarioporEmail(email)== null && email.contains("@") && passwd.length() >= 8){
             usuariosDAO.guardarUsuario(new Usuario(name,email,passwd,rolDAO.buscarUsuarioPorid(idRol)));
             return true;
         }
         return false;
-    }
+    }*/
 
     @Override
     public boolean eliminarUsuario(String email) {

@@ -9,10 +9,10 @@ public class RolesDAOImpl implements IRolesDAO{
     @Autowired
     IRolesJPA rolesJPA;
 
-    @Override
+   /* @Override
     public Rol buscarUsuarioPorid(Integer id) {
-        return rolesJPA.findByIdRol(id);
-    }
+        return rolesJPA.findByIdRol(id);}*/
+
 
     @Override
     public Rol buscarRolPorNombre(String nombre) {

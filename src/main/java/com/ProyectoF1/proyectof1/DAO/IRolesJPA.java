@@ -8,7 +8,7 @@ import java.util.*;
 
 public interface IRolesJPA extends JpaRepository<Rol, Integer> {
 
-    Rol findByIdRol(Integer IdRol);
+    /*Rol findById(Integer IdRol);*/
 
     Rol findByRol(String rol);
 

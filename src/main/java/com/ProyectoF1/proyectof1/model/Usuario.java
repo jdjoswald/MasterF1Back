@@ -25,10 +25,10 @@ public class Usuario {
     @Column(name = "contrasena", nullable = false, length = 50)
     private String contrasena;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "idRol", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_Rol",referencedColumnName = "idRol", nullable = true)
     @JsonIgnoreProperties("tbl_usuario")
-    private Rol idRol;
+    private Rol id_Rol;
 
     @Column(name = "definitivo", nullable = false)
     private boolean definitivo;
@@ -39,7 +39,7 @@ public class Usuario {
         this.nombre = name;
         this.email = email;
         this.contrasena = contrasena;
-        this.idRol = idRol;
+        this.id_Rol = idRol;
         this.definitivo = false;
 
     }
@@ -84,12 +84,12 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-    public Rol getIdRol() {
-        return idRol;
+    public Rol getId_Rol() {
+        return id_Rol;
     }
 
-    public void setIdRol(Rol idRol) {
-        this.idRol = idRol;
+    public void setId_Rol(Rol idRol) {
+        this.id_Rol = idRol;
     }
 
     public boolean getDefinitivo() {
@@ -106,12 +106,12 @@ public class Usuario {
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
         return (Objects.equals(id, usuario.id) && Objects.equals(nombre, usuario.nombre) && Objects.equals(usuario, usuario.usuario) &&
-                Objects.equals(email, usuario.email) && Objects.equals(contrasena, usuario.contrasena) && Objects.equals(idRol, usuario.idRol));
+                Objects.equals(email, usuario.email) && Objects.equals(contrasena, usuario.contrasena) && Objects.equals(id_Rol, usuario.id_Rol));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre, usuario, email, contrasena,idRol);
+        return Objects.hash(id, nombre, usuario, email, contrasena, id_Rol);
     }
 
 }
