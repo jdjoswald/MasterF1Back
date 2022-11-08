@@ -17,27 +17,26 @@ import javax.persistence.Id;
 public class Noticia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String titulo;
     private String imagen;
     private String texto;
-    private Long idUsuario;
+    
+//    private Usuario usuario;
     
     public Noticia(){}
 
-    public Noticia(Long id, String titulo, String imagen, String texto, Long idUsuario) {
-        this.id = id;
+    public Noticia(String titulo, String imagen, String texto) {
         this.titulo = titulo;
         this.imagen = imagen;
         this.texto = texto;
-        this.idUsuario = idUsuario;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -64,15 +63,7 @@ public class Noticia {
     public void setTexto(String texto) {
         this.texto = texto;
     }
-
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
     
+
     
-         
 }

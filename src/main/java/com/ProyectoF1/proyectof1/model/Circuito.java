@@ -17,6 +17,7 @@ import javax.persistence.Id;
 public class Circuito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String nombre; 
     private String ciudad;
     private String pais;
