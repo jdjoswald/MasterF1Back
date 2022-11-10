@@ -26,6 +26,11 @@ public class usuarioController {
     return UsuarioService.buscarUsuarioPorid(id);
     }
 
+    @GetMapping("/find/users/{aprobados_flag}")
+    public List<Usuario> buscarUsuariosPorFlagDe(@PathVariable("aprobados_flag")boolean flag){
+        return UsuarioService.buscarUsuariosPorFlagDef(flag);
+    }
+
 
     @GetMapping("/find/{email}")
     public Usuario buscarUsuarioPorEmail(@PathVariable("email")String email){
@@ -33,23 +38,24 @@ public class usuarioController {
     }
 
     @GetMapping("/login/{email}/{passwd}")
-    public boolean login(@PathVariable("email")String email, @PathVariable("passwd")String passwd){
-        if (UsuarioService.buscarUsuarioPorEmailAndPasswd(email, passwd)!= null){
-            return true;
-        }
-        return false;
-    }
+    public String login(@PathVariable("email")String email, @PathVariable("passwd")String passwd){
+        return  UsuarioService.buscarUsuarioPorEmailAndPasswd(email, passwd);
+      }
 
     @PostMapping("/save")
     public boolean crearUsuario(@RequestBody Usuario usuario){
-        System.out.println(usuario.getId_Rol().getId());
-       System.out.println("Pasando por controller");
-       return UsuarioService.guardarUsuario(usuario);
+          return UsuarioService.guardarUsuario(usuario);
     }
 
     @PutMapping("/save")
-    public boolean actualizarCurso(@RequestBody Usuario usuario) {
+    public boolean actualizarUsuario(@RequestBody Usuario usuario) {
         return UsuarioService.actualizarUsuario(usuario);
+    }
+
+    @PutMapping("/aprobarUsuarios")
+    public boolean actualizarUsuario(@RequestBody List<Usuario> usuarios) {
+      /*  return UsuarioService.actualizarUsuario(usuario);*/
+        return false;
     }
 
     @DeleteMapping ("/delete/{email}")

@@ -6,7 +6,6 @@ package com.ProyectoF1.proyectof1.service;
 
 import com.ProyectoF1.proyectof1.DAO.IRolesDAO;
 import com.ProyectoF1.proyectof1.DAO.IUsuariosDAO;
-import com.ProyectoF1.proyectof1.model.Rol;
 import com.ProyectoF1.proyectof1.model.Usuario;
 import java.util.*;
 import org.springframework.beans.factory.annotation.*;
@@ -35,8 +34,12 @@ public class UsuarioServicesimpl implements IUsuarioService{
     }
 
     @Override
-    public Usuario buscarUsuarioPorEmailAndPasswd(String email, String passwd) {
-        return usuariosDAO.buscarUsuarioPorEmailAndPasswd(email,passwd);
+    public String buscarUsuarioPorEmailAndPasswd(String email, String passwd) {
+        Usuario usuario = usuariosDAO.buscarUsuarioPorEmailAndPasswd(email, passwd);
+        if (usuario != null) {
+            return usuario.getUsuario();
+        }
+        return "";
     }
 
     @Override
@@ -61,23 +64,14 @@ public class UsuarioServicesimpl implements IUsuarioService{
 
     @Override
     public boolean guardarUsuario(Usuario usuario) {
-        System.out.println("Pasando por guardar");
-       /* if (usuariosDAO.buscarUsuarioporEmail(usuario.getEmail())== null){}*/
-            usuariosDAO.guardarUsuario(usuario);
-            return true;
-
-
-       /* return false;*/
-    }
-
-    /*@Override
-    public boolean guardarUsuario(String name, String email, String passwd, Integer idRol) {
-        if(usuariosDAO.buscarUsuarioporEmail(email)== null && email.contains("@") && passwd.length() >= 8){
-            usuariosDAO.guardarUsuario(new Usuario(name,email,passwd,rolDAO.buscarUsuarioPorid(idRol)));
-            return true;
-        }
+       if ((usuariosDAO.buscarUsuarioporEmail(usuario.getEmail())== null)&&
+          (usuariosDAO.buscarUsuarioporNUsuario(usuario.getUsuario())==null))
+       {
+           usuariosDAO.guardarUsuario(usuario);
+           return true;
+       }
         return false;
-    }*/
+    }
 
     @Override
     public boolean eliminarUsuario(String email) {
