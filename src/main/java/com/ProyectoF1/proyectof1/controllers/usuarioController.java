@@ -53,9 +53,8 @@ public class usuarioController {
     }
 
     @PutMapping("/aprobarUsuarios")
-    public boolean actualizarUsuario(@RequestBody List<Usuario> usuarios) {
-      /*  return UsuarioService.actualizarUsuario(usuario);*/
-        return false;
+    public boolean aprobarUsuario(@RequestBody Usuario usuario) {
+        return UsuarioService.aprobarUsuario(usuario);
     }
 
     @DeleteMapping ("/delete/{email}")
