@@ -1,41 +1,71 @@
 package com.ProyectoF1.proyectof1.model;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
+@Table(name = "tbl_usuario")
 public class Usuario {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
+    @Column(name = "idUsuario", nullable = false)
+    private Integer id;
+
+    @Column(name = "nombre", nullable = false, length = 150)
+    private String nombre;
+
+    @Column(name = "usuario", nullable = false, length = 45)
+    private String usuario;
+
+    @Column(name = "email", nullable = false, length = 50)
     private String email;
-    private String direccion;
-   
+
+    @Column(name = "contrasena", nullable = false, length = 50)
+    private String contrasena;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_Rol",referencedColumnName = "idRol", nullable = true)
+    @JsonIgnoreProperties("tbl_usuario")
+    private Rol id_Rol;
+
+    @Column(name = "definitivo", nullable = false)
+    private boolean definitivo;
+
     public Usuario(){}
 
-    public Usuario(String name, String email, String direccion) {
-        this.name = name;
+    public Usuario(String name, String email, String contrasena, Rol idRol) {
+        this.nombre = name;
         this.email = email;
-        this.direccion = direccion;
+        this.contrasena = contrasena;
+        this.id_Rol = idRol;
+        this.definitivo = false;
+
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getEmail() {
@@ -46,18 +76,42 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
-  
-    
-    
-    
-    
-    
+    public Rol getId_Rol() {
+        return id_Rol;
+    }
+
+    public void setId_Rol(Rol idRol) {
+        this.id_Rol = idRol;
+    }
+
+    public boolean getDefinitivo() {
+        return definitivo;
+    }
+
+    public void setDefinitivo(boolean definitivo) {
+        this.definitivo = definitivo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return (Objects.equals(id, usuario.id) && Objects.equals(nombre, usuario.nombre) && Objects.equals(usuario, usuario.usuario) &&
+                Objects.equals(email, usuario.email) && Objects.equals(contrasena, usuario.contrasena) && Objects.equals(id_Rol, usuario.id_Rol));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, usuario, email, contrasena, id_Rol);
+    }
+
 }
