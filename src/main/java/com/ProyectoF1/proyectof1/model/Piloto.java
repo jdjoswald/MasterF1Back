@@ -4,10 +4,15 @@
  */
 package com.ProyectoF1.proyectof1.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -18,7 +23,7 @@ public class Piloto {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String  nombre;
     private String apellidos;
     private String siglas;
@@ -26,12 +31,17 @@ public class Piloto {
     private String foto;
     private String pais;
     private Long idEquipo;
+    @ManyToMany(mappedBy = "pilotos", 
+                fetch = FetchType.LAZY, 
+                cascade = CascadeType.ALL)
+    @JsonBackReference
+    Set<Carrera> carreras;
 
     public Piloto() {
     }
 
-    public Piloto(Long id, String nombre, String apellidos, String siglas, int dorsal, String foto, String pais, Long idEquipo) {
-        this.id = id;
+    public Piloto(String nombre, String apellidos, String siglas, int dorsal, String foto, String pais, Long idEquipo) {
+        
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.siglas = siglas;
@@ -41,13 +51,7 @@ public class Piloto {
         this.idEquipo = idEquipo;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+   
 
     public String getNombre() {
         return nombre;

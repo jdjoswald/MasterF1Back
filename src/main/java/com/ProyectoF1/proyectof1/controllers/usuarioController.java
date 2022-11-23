@@ -4,59 +4,65 @@
  */
 package com.ProyectoF1.proyectof1.controllers;
 
-import com.ProyectoF1.proyectof1.service.UsuarioService;
-import java.util.ArrayList;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import com.ProyectoF1.proyectof1.model.Usuario;
-import java.util.Optional;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-/**
- *
- * @author joswald
- */
+import com.ProyectoF1.proyectof1.service.IUsuarioService;
+import java.util.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping("user")
 public class usuarioController {
     @Autowired
-    UsuarioService usuarioService;
+    IUsuarioService UsuarioService;
     
     @GetMapping("/all")
-    public ArrayList<Usuario> getAllUser(){
-        return usuarioService.getAllUser();
+    public List<Usuario> buscarTodos(){
+        return UsuarioService.buscarTodos();
     }
-    @PostMapping("/find/{id}")
-    public Optional<Usuario> getUserById(@PathVariable("id")long id){
-    return usuarioService.getUserById(id);
+
+    @GetMapping("/find/{id}")
+    public Usuario buscarUsuarioPorid(@PathVariable("id")Integer id){
+    return UsuarioService.buscarUsuarioPorid(id);
     }
-     @PostMapping("/findmail/{id}")
-    public boolean getUserByEmail(@PathVariable("id")String id){
-    return usuarioService.getUserByEmail(id);
+
+    @GetMapping("/find/users/{aprobados_flag}")
+    public List<Usuario> buscarUsuariosPorFlagDe(@PathVariable("aprobados_flag")boolean flag){
+        return UsuarioService.buscarUsuariosPorFlagDef(flag);
     }
+
+
+    @GetMapping("/find/{email}")
+    public Usuario buscarUsuarioPorEmail(@PathVariable("email")String email){
+    return UsuarioService.buscarUsuarioporEmail(email);
+    }
+
+    @GetMapping("/login/{email}/{passwd}")
+    public String login(@PathVariable("email")String email, @PathVariable("passwd")String passwd){
+        return  UsuarioService.buscarUsuarioPorEmailAndPasswd(email, passwd);
+      }
+
     @PostMapping("/save")
-    public String saveUser(@RequestBody Usuario u){
-         //return u;
-         if (usuarioService.saveUser(u)== true){
-             return "usuario creado";
-         }else{
-             return "usuario existente";
-         }
-          
+    public boolean crearUsuario(@RequestBody Usuario usuario){
+          return UsuarioService.guardarUsuario(usuario);
     }
-    @PostMapping("/delete/{id}")
-    public String deleteUserById(@PathVariable("id") long id){
-        if(usuarioService.deleteUserById(id)){
-            return("Usuario no eliminado");
-        }
-        else{
-            return("Usuario no eliminado") ;
-        }
-     
+
+    @PutMapping("/save")
+    public boolean actualizarUsuario(@RequestBody Usuario usuario) {
+        return UsuarioService.actualizarUsuario(usuario);
     }
+
+    @PutMapping("/aprobarUsuarios")
+    public boolean actualizarUsuario(@RequestBody List<Usuario> usuarios) {
+      /*  return UsuarioService.actualizarUsuario(usuario);*/
+        return false;
+    }
+
+    @DeleteMapping ("/delete/{email}")
+    public boolean deleteUserById(@PathVariable("email") String email){
+       return UsuarioService.eliminarUsuario(email);
+    }
+
+
     
 }

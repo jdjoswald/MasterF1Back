@@ -1,37 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.ProyectoF1.proyectof1.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-/**
- *
- * @author joswald
- */
+import javax.persistence.*;
+import java.util.List;
+import java.util.Objects;
+
 @Entity
+@Table(name = "tbl_rol")
 public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "idRol", nullable = false)
+    private Integer id;
+
+    @Column(name = "rol", nullable = false, length = 45)
     private String rol;
-    
-    public Rol(){}
 
-    public Rol(Long id, String rol) {
-        this.id = id;
-        this.rol = rol;
-    }
-
-    public Long getId() {
+    @OneToMany(mappedBy = "id_Rol", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties(value = {"tbl_rol"})
+    private List<Usuario> users;
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,6 +35,17 @@ public class Rol {
     public void setRol(String rol) {
         this.rol = rol;
     }
-    
-    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rol rolAux = (Rol) o;
+        return (Objects.equals(id, rolAux.id) && Objects.equals(rol, rolAux.rol));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, rol);
+    }
+
 }
