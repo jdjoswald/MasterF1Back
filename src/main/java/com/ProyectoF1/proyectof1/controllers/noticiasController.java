@@ -9,6 +9,7 @@ import com.ProyectoF1.proyectof1.service.INoticiaService;
 import com.ProyectoF1.proyectof1.service.IUsuarioService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,15 +29,17 @@ public class noticiasController {
     @Autowired
     IUsuarioService usuarioService;
     
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/all")
     public List<Noticia> buscarTodos() {
         return noticiaService.buscarTodos();
     }
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/user/{id}")
     public Noticia noticiaPorId(@PathVariable("id") Integer id) {
         return noticiaService.buscarPorId(id);
     }
-    
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/save")
     public Noticia guardarUsuario(@RequestBody Noticia noticia){
         var user=noticia.getIdUsuario();
