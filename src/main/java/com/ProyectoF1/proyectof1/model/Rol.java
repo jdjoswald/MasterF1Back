@@ -24,6 +24,13 @@ public class Rol {
         return id;
     }
 
+    public Rol(String rol) {
+        this.rol = rol;
+    }
+
+    public Rol() {
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
