@@ -2,9 +2,11 @@ package com.ProyectoF1.proyectof1;
 
 import com.ProyectoF1.proyectof1.model.Carrera;
 import com.ProyectoF1.proyectof1.model.Circuito;
+import com.ProyectoF1.proyectof1.model.Rol;
 import com.ProyectoF1.proyectof1.service.ICarreraService;
 import com.ProyectoF1.proyectof1.service.ICircuitoService;
 import com.ProyectoF1.proyectof1.service.INoticiaService;
+import com.ProyectoF1.proyectof1.service.IRolesService;
 import com.ProyectoF1.proyectof1.service.IUsuarioService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,7 +26,8 @@ public class Proyectof1Application {
     public CommandLineRunner mappingDemo(ICircuitoService circuitoService,
                                          ICarreraService carreraService,
                                          INoticiaService noticiaService,
-                                         IUsuarioService usuarioService
+                                         IUsuarioService usuarioService,
+                                         IRolesService rolesService
                                          ) {
         return args -> {
 
@@ -32,6 +35,10 @@ public class Proyectof1Application {
             
             Circuito cir = new Circuito("Circuito de prueba", "ciudad", "pais", "trazado", 0, 0, 0, 0, 0);
            circuitoService.guardarCircuito(cir);
+           
+           rolesService.guardarRol(new Rol("Admin"));
+           rolesService.guardarRol(new Rol("User"));
+           rolesService.guardarRol(new Rol("TeamManager"));
            
            
                  
