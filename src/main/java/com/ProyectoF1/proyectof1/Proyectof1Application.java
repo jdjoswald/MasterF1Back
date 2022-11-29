@@ -37,8 +37,7 @@ public class Proyectof1Application {
            circuitoService.guardarCircuito(cir);
            
            rolesService.guardarRol(new Rol("Admin"));
-           rolesService.guardarRol(new Rol("User"));
-           rolesService.guardarRol(new Rol("TeamManager"));
+           rolesService.guardarRol(new Rol("Team Manager"));
            
            
                  
