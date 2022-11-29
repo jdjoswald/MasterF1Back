@@ -10,6 +10,7 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("user")
 public class usuarioController {
@@ -33,7 +34,7 @@ public class usuarioController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/find/{email}")
+    @GetMapping("/find/email/{email}")
     public Usuario buscarUsuarioPorEmail(@PathVariable("email")String email){
     return UsuarioService.buscarUsuarioporEmail(email);
     }

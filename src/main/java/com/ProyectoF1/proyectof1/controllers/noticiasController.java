@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author joswald
  */
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("news")
 public class noticiasController {

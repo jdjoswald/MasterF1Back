@@ -44,8 +44,7 @@ public class CarreraServiceImpl  implements ICarreraService{
     @Override
     public Carrera guardarCarrera(Carrera carrera) {
         
-        Circuito circuito = carrera.getCircuito();
-        carrera.setCircuito(circuitoDAO.buscarPorId(circuito.getId()));
+        System.out.println(carrera.getCircuito().getNombre());
          carreraDAO.guardarCarrera(carrera);
          return carrera;
     }
