@@ -10,53 +10,56 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("user")
 public class usuarioController {
     @Autowired
     IUsuarioService UsuarioService;
     
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/all")
     public List<Usuario> buscarTodos(){
         return UsuarioService.buscarTodos();
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/find/{id}")
     public Usuario buscarUsuarioPorid(@PathVariable("id")Integer id){
     return UsuarioService.buscarUsuarioPorid(id);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/find/users/{aprobados_flag}")
     public List<Usuario> buscarUsuariosPorFlagDe(@PathVariable("aprobados_flag")boolean flag){
         return UsuarioService.buscarUsuariosPorFlagDef(flag);
     }
 
-
-    @GetMapping("/find/{email}")
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/find/email/{email}")
     public Usuario buscarUsuarioPorEmail(@PathVariable("email")String email){
     return UsuarioService.buscarUsuarioporEmail(email);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/login/{email}/{passwd}")
     public String login(@PathVariable("email")String email, @PathVariable("passwd")String passwd){
         return  UsuarioService.buscarUsuarioPorEmailAndPasswd(email, passwd);
       }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/save")
     public boolean crearUsuario(@RequestBody Usuario usuario){
           return UsuarioService.guardarUsuario(usuario);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/save")
     public boolean actualizarUsuario(@RequestBody Usuario usuario) {
         return UsuarioService.actualizarUsuario(usuario);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/aprobarUsuarios")
     public boolean aprobarUsuario(@RequestBody Usuario usuario) {
         return UsuarioService.aprobarUsuario(usuario);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping ("/delete/{email}")
     public boolean deleteUserById(@PathVariable("email") String email){
        return UsuarioService.eliminarUsuario(email);

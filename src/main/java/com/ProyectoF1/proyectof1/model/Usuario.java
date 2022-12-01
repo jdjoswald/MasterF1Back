@@ -1,6 +1,7 @@
 package com.ProyectoF1.proyectof1.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.List;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -32,6 +33,11 @@ public class Usuario {
 
     @Column(name = "definitivo", nullable = false)
     private boolean definitivo;
+    
+    @OneToMany(mappedBy="idUsuario",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Noticia> noticia;
 
     public Usuario(){}
 
