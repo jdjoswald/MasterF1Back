@@ -72,5 +72,5 @@ public class IUsuariosImpl implements IUsuariosDAO{
     public void eliminarUsuario(Integer id) {usuariosJPA.deleteById(id);  }
 
     @Override
-    public void actualizarUsuario(Usuario usuario) {usuariosJPA.save(usuario);   }
+    public void actualizarUsuario(Usuario usuario) {usuariosJPA.save(usuario);  }
 }

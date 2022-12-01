@@ -31,5 +31,7 @@ public interface IUsuarioService {
 
     
     public boolean actualizarUsuario(Usuario usuario);
+
+    public boolean aprobarUsuario(Usuario usuario);
     
 }

@@ -64,7 +64,8 @@ public class UsuarioServicesimpl implements IUsuarioService{
 
     @Override
     public boolean guardarUsuario(Usuario usuario) {
-       if ((usuariosDAO.buscarUsuarioporEmail(usuario.getEmail())== null)&&
+       if ((usuario.getContrasena().length()>= 8) &&
+          (usuariosDAO.buscarUsuarioporEmail(usuario.getEmail())== null)&&
           (usuariosDAO.buscarUsuarioporNUsuario(usuario.getUsuario())==null))
        {
            usuariosDAO.guardarUsuario(usuario);
@@ -91,6 +92,19 @@ public class UsuarioServicesimpl implements IUsuarioService{
         usuariosDAO.guardarUsuario(usuario);
         return true;
     }
+
+        return false;
+
+    }
+
+    @Override
+    public boolean aprobarUsuario(Usuario usuario) {
+        Usuario user = usuariosDAO.buscarUsuarioporEmail(usuario.getEmail());
+        if (user!=null){
+            user.setDefinitivo(true);
+            usuariosDAO.actualizarUsuario(user);
+            return true;
+        }
 
         return false;
 
