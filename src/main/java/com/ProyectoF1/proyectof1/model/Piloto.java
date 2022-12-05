@@ -1,57 +1,59 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.ProyectoF1.proyectof1.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
-/**
- *
- * @author Gregsoft
- */
+import com.fasterxml.jackson.annotation.*;
+
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+import java.util.Objects;
+
+
 @Entity
-public class Piloto {
-    
+@Table(name = "tbl_piloto", schema="uah_mad_g5")
+
+public class Piloto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idPiloto", nullable = false)
     private Integer id;
-    private String  nombre;
+
+    @Column(name = "nombre", nullable = false, length = 60)
+    private String nombre;
+
+    @Column(name = "apellidos", nullable = false, length = 150)
     private String apellidos;
+
+    @Column(name = "siglas", length = 45)
     private String siglas;
-    private int dorsal;
+
+    @Column(name = "dorsal", length = 45)
+    private String dorsal;
+
+
+    @Column(name = "foto")
     private String foto;
+
+    @Column(name = "pais", length = 120)
     private String pais;
-    private Long idEquipo;
-    @ManyToMany(mappedBy = "pilotos", 
-                fetch = FetchType.LAZY, 
-                cascade = CascadeType.ALL)
-    @JsonBackReference
-    Set<Carrera> carreras;
 
-    public Piloto() {
+    @Column(name = "twitter", length = 45)
+    private String twitter;
+
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo", nullable = true)
+    @JsonIgnoreProperties("tbl_piloto")
+    private Equipo equipo;
+
+    public Integer getId() {
+        return id;
     }
 
-    public Piloto(String nombre, String apellidos, String siglas, int dorsal, String foto, String pais, Long idEquipo) {
-        
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.siglas = siglas;
-        this.dorsal = dorsal;
-        this.foto = foto;
-        this.pais = pais;
-        this.idEquipo = idEquipo;
+    public void setId(Integer id) {
+        this.id = id;
     }
-
-   
 
     public String getNombre() {
         return nombre;
@@ -77,11 +79,11 @@ public class Piloto {
         this.siglas = siglas;
     }
 
-    public int getDorsal() {
+    public String getDorsal() {
         return dorsal;
     }
 
-    public void setDorsal(int dorsal) {
+    public void setDorsal(String dorsal) {
         this.dorsal = dorsal;
     }
 
@@ -101,13 +103,34 @@ public class Piloto {
         this.pais = pais;
     }
 
-    public Long getIdEquipo() {
-        return idEquipo;
+    public String getTwitter() {
+        return twitter;
     }
 
-    public void setIdEquipo(Long idEquipo) {
-        this.idEquipo = idEquipo;
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
     }
-    
-    
+
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
+    public Equipo getEquipo() { return equipo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Piloto piloto = (Piloto) o;
+        return (Objects.equals(id, piloto.id) && Objects.equals(nombre, piloto.nombre) && Objects.equals(apellidos, piloto.apellidos) &&
+                Objects.equals(siglas, piloto.siglas) && Objects.equals(pais, piloto.pais));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, apellidos, siglas, pais);
+    }
+
 }
