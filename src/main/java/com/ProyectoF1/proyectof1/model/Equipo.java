@@ -8,7 +8,9 @@ import java.util.*;
 
 @Entity
 @Table(name = "tbl_equipo",schema="uah_mad_g5")
-
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Equipo implements Serializable {
 
     @Id
@@ -37,12 +39,12 @@ public class Equipo implements Serializable {
 
 
     @OneToMany(mappedBy = "equipo", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("tbl_equipo")
+    @JsonIgnore
     private List<Piloto> Pilotos = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "Equipo")
-    @JsonIgnoreProperties("tbl_equipo")
+    @JsonIgnore
     private List<Coche> Coches = new ArrayList<>();
 
     private static final int MAX_PILOTOS = 2;
