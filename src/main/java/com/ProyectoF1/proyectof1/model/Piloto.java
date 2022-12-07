@@ -1,12 +1,8 @@
 package com.ProyectoF1.proyectof1.model;
 
-
 import com.fasterxml.jackson.annotation.*;
-
-
 import javax.persistence.*;
 import java.io.Serializable;
-
 import java.util.Objects;
 
 
@@ -44,7 +40,7 @@ public class Piloto implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo", nullable = true)
-    @JsonIgnoreProperties("tbl_piloto")
+    @JsonIgnore
     private Equipo equipo;
 
     public Integer getId() {

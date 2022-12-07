@@ -9,12 +9,15 @@ import com.ProyectoF1.proyectof1.model.Piloto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Set;
+import org.apache.commons.io.IOUtils;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
+
 
 @Service
 public class EquipoServiceImpl implements IEquipoService{
-
+    private final static String URL_IMAGEN = "/EquiposImg/";
     @Autowired
     IEquiposDAO equiposDAO;
 
@@ -124,5 +127,15 @@ public class EquipoServiceImpl implements IEquipoService{
         }
         return false;
 
+    }
+
+    @Override
+    public byte[] buscarEquipoimg(Integer idEquipo) throws IOException {
+        String imagen = equiposDAO.buscarEquipoPorid(idEquipo).getLogo();
+        InputStream in = getClass().getResourceAsStream(URL_IMAGEN+"not_found.jpg");
+        if((imagen != "") && (imagen != null)){
+            in = getClass().getResourceAsStream(imagen);
+        }
+        return IOUtils.toByteArray(in);
     }
 }

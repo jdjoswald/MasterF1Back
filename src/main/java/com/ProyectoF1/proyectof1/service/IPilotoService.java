@@ -3,6 +3,7 @@ package com.ProyectoF1.proyectof1.service;
 import com.ProyectoF1.proyectof1.model.Equipo;
 import com.ProyectoF1.proyectof1.model.Piloto;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface IPilotoService {
@@ -24,4 +25,6 @@ public interface IPilotoService {
     public boolean addEquipo(Integer idPiloto, Integer idEquipo);
 
     public boolean deleteEquipo(Integer idPiloto, Integer idEquipo);
+
+    public byte[] buscarPilotoimg(Integer idPiloto) throws IOException;
 }

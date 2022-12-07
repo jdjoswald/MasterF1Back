@@ -3,14 +3,19 @@ import com.ProyectoF1.proyectof1.DAO.IEquiposDAO;
 import com.ProyectoF1.proyectof1.DAO.IPilotosDAO;
 import com.ProyectoF1.proyectof1.model.Equipo;
 import com.ProyectoF1.proyectof1.model.Piloto;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Set;
 
 @Service
 public class PilotoServiceImpl implements IPilotoService {
+
+    private final static String URL_IMAGEN = "/PilotosImg/";
     @Autowired
     IPilotosDAO pilotosDAO;
 
@@ -92,4 +97,15 @@ public class PilotoServiceImpl implements IPilotoService {
         return false;
 
     }
+
+    @Override
+    public byte[] buscarPilotoimg(Integer idPiloto) throws IOException {
+        String imagen = pilotosDAO.buscarPilotoPorid(idPiloto).getFoto();
+        InputStream in = getClass().getResourceAsStream(URL_IMAGEN+"not_found.jpg");
+        if((imagen != "") && (imagen != null)){
+            in = getClass().getResourceAsStream(imagen);
+        }
+        return IOUtils.toByteArray(in);
+    }
+
 }
