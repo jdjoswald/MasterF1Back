@@ -3,6 +3,7 @@ package com.ProyectoF1.proyectof1;
 import com.ProyectoF1.proyectof1.model.Carrera;
 import com.ProyectoF1.proyectof1.model.Circuito;
 import com.ProyectoF1.proyectof1.model.Rol;
+import com.ProyectoF1.proyectof1.model.Usuario;
 import com.ProyectoF1.proyectof1.service.ICarreraService;
 import com.ProyectoF1.proyectof1.service.ICircuitoService;
 import com.ProyectoF1.proyectof1.service.INoticiaService;
@@ -33,11 +34,16 @@ public class Proyectof1Application {
 
            
             
-            Circuito cir = new Circuito("Circuito de prueba", "ciudad", "pais", "trazado", 0, 0, 0, 0, 0);
+           Circuito cir = new Circuito("Circuito de prueba", "ciudad", "pais", "trazado", 0, 0, 0, 0, 0);
            circuitoService.guardarCircuito(cir);
            
            rolesService.guardarRol(new Rol("Admin"));
            rolesService.guardarRol(new Rol("Team Manager"));
+           Usuario user=new Usuario("admin", "admin","admin@admin.com", "admin", rolesService.buscarPorId(1));
+           user.setDefinitivo(true);
+           usuarioService.guardarUsuario(user);
+           
+           
            
            
                  

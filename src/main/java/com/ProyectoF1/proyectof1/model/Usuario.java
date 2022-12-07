@@ -41,14 +41,16 @@ public class Usuario {
 
     public Usuario(){}
 
-    public Usuario(String name, String email, String contrasena, Rol idRol) {
-        this.nombre = name;
+    public Usuario(String nombre, String usuario, String email, String contrasena, Rol id_Rol) {
+        this.nombre = nombre;
+        this.usuario = usuario;
         this.email = email;
         this.contrasena = contrasena;
-        this.id_Rol = idRol;
-        this.definitivo = false;
-
+        this.id_Rol = id_Rol;
+      
     }
+
+    
 
     public Integer getId() {
         return id;

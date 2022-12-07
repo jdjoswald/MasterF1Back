@@ -7,6 +7,7 @@ package com.ProyectoF1.proyectof1.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.sql.Timestamp;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -59,10 +60,10 @@ public class Carrera {
     public Carrera() {
     }
 
-    public Carrera(String fecha, String nombre, Circuito circuito) {
+    public Carrera(String fecha, String nombre) {
         this.fecha = fecha;
         this.nombre = nombre;
-        this.circuito = circuito;
+      
     }
 
     public Integer getId() {
@@ -110,7 +111,7 @@ public class Carrera {
     
     
     
-
+ 
     
     
     
