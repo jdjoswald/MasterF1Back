@@ -4,8 +4,10 @@
  */
 package com.ProyectoF1.proyectof1.service;
 
+import com.ProyectoF1.proyectof1.DAO.IEquiposDAO;
 import com.ProyectoF1.proyectof1.DAO.IRolesDAO;
 import com.ProyectoF1.proyectof1.DAO.IUsuariosDAO;
+import com.ProyectoF1.proyectof1.model.Equipo;
 import com.ProyectoF1.proyectof1.model.Usuario;
 import java.util.*;
 import org.springframework.beans.factory.annotation.*;
@@ -19,6 +21,8 @@ public class UsuarioServicesimpl implements IUsuarioService{
 
     @Autowired
     IRolesDAO rolDAO;
+     @Autowired
+     IEquiposDAO equipoDAO;
 
     @Override
     public List<Usuario> buscarTodos() {return usuariosDAO.buscarTodos(); }
@@ -88,7 +92,9 @@ public class UsuarioServicesimpl implements IUsuarioService{
 
     @Override
     public boolean actualizarUsuario(Usuario usuario) {
-        if (usuariosDAO.buscarUsuarioporEmail(usuario.getEmail())!= null){
+        if (usuariosDAO.buscarUsuarioPorid(usuario.getId())!= null){
+            Equipo equipo= equipoDAO.buscarEquipoPorid(usuario.getId());
+                    usuario.setIdEquipo(equipo);
         usuariosDAO.guardarUsuario(usuario);
         return true;
     }

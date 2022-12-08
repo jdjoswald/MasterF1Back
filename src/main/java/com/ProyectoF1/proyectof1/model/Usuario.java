@@ -42,8 +42,8 @@ public class Usuario {
     private boolean definitivo;
     
     @OneToMany(mappedBy="idUsuario",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+            cascade = CascadeType.ALL
+            )
     private List<Noticia> noticia;
 
     public Usuario(){}
