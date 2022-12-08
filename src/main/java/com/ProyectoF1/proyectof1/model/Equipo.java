@@ -46,6 +46,10 @@ public class Equipo implements Serializable {
     @OneToMany(mappedBy = "Equipo")
     @JsonIgnore
     private List<Coche> Coches = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "idEquipo")
+    @JsonIgnore
+    private List<Usuario> users;
 
     private static final int MAX_PILOTOS = 2;
     private static final int MAX_COCHES = 4;

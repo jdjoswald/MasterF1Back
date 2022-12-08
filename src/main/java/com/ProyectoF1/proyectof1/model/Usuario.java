@@ -30,6 +30,13 @@ public class Usuario {
     @JoinColumn(name = "id_Rol",referencedColumnName = "idRol", nullable = true)
     @JsonIgnoreProperties("tbl_usuario")
     private Rol id_Rol;
+    
+    @ManyToOne(fetch = FetchType.EAGER, optional = true, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo", nullable = true)
+    @JsonIgnoreProperties("tbl_usuario")
+    private Equipo idEquipo;
+    
+    
 
     @Column(name = "definitivo", nullable = false)
     private boolean definitivo;
@@ -41,14 +48,26 @@ public class Usuario {
 
     public Usuario(){}
 
-    public Usuario(String name, String email, String contrasena, Rol idRol) {
-        this.nombre = name;
+    public Usuario(String nombre, String usuario, String email, String contrasena, Rol id_Rol, Equipo idEquipo, boolean definitivo) {
+        this.nombre = nombre;
+        this.usuario = usuario;
         this.email = email;
         this.contrasena = contrasena;
-        this.id_Rol = idRol;
-        this.definitivo = false;
-
+        this.id_Rol = id_Rol;
+        this.idEquipo = idEquipo;
+        this.definitivo = definitivo;
     }
+    
+
+    public Equipo getIdEquipo() {
+        return idEquipo;
+    }
+
+    public void setIdEquipo(Equipo idEquipo) {
+        this.idEquipo = idEquipo;
+    }
+
+
 
     public Integer getId() {
         return id;
