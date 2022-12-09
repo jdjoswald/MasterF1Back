@@ -1,40 +1,65 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.ProyectoF1.proyectof1.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.*;
 
-/**
- *
- * @author Gregsoft
- */
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.*;
+
 @Entity
-public class Equipo {
-  @Id
+@Table(name = "tbl_equipo",schema="uah_mad_g5")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
+public class Equipo implements Serializable {
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "idEquipo", nullable = false)
+    private Integer id;
+
+
+    @Column(name = "logo")
     private String logo;
+
+    @Column(name = "twitter", length = 50)
     private String twitter;
 
-    public Equipo() {
-    }
+    @Column(name = "nombre", length = 50)
+    private String nombre;
 
-        public Equipo(Long id, String logo, String twitter) {
-        this.id = id;
-        this.logo = logo;
-        this.twitter = twitter;
-    }
+    @Column(name = "base", length = 50)
+    private String base;
 
-    public Long getId() {
+    @Column(name = "Team_Chief", length = 50)
+    private String teamChief;
+
+    @Column(name = "Tech_Chief", length = 50)
+    private String techChief;
+
+
+    @OneToMany(mappedBy = "equipo", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<Piloto> Pilotos = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "Equipo")
+    @JsonIgnore
+    private List<Coche> Coches = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "idEquipo")
+    @JsonIgnore
+    private List<Usuario> users;
+
+    private static final int MAX_PILOTOS = 2;
+    private static final int MAX_COCHES = 4;
+
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -53,8 +78,116 @@ public class Equipo {
     public void setTwitter(String twitter) {
         this.twitter = twitter;
     }
-    
-    
-      
-}
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getBase() {
+        return base;
+    }
+
+    public void setBase(String base) {
+        this.base = base;
+    }
+
+    public String getTeamChief() {
+        return teamChief;
+    }
+
+    public void setTeamChief(String teamChief) {
+        this.teamChief = teamChief;
+    }
+
+    public String getTechChief() {
+        return techChief;
+    }
+
+    public void setTechChief(String techChief) {
+        this.techChief = techChief;
+    }
+
+    public List<Piloto> getPilotos() {
+        return Pilotos;
+    }
+
+    public void setPilotos(List<Piloto> tblPilotos) {
+        this.Pilotos = tblPilotos;
+    }
+
+    public void setPiloto(Piloto piloto){
+        if (this.Pilotos.size()<MAX_PILOTOS){
+            this.Pilotos.add(piloto);
+        }
+    }
+
+    public void deletePiloto(Integer idPiloto){
+        if (!Pilotos.isEmpty()){
+            for (Piloto piloto: this.Pilotos){
+                if(piloto.getId()==idPiloto){
+                    this.Pilotos.remove(piloto);
+                }
+            }}
+    }
+    public List<Coche> getCoches() {
+        return Coches;
+    }
+
+    public void setCoche(Coche coche){
+        if (this.Coches.size()<MAX_COCHES){
+            this.Coches.add(coche);
+        }
+    }
+
+    public void deleteCoche(Integer idCoche){
+        if (!Coches.isEmpty()){
+            for (Coche coche: this.Coches){
+                if(coche.getId()==idCoche){
+                    this.Coches.remove(coche);
+                }
+            }}
+    }
+
+    public void setCoches(List<Coche> tblCoches) {
+        this.Coches = tblCoches;
+    }
+
+    public boolean isPilotoinEquipo(Integer idPiloto) {
+        if (!Pilotos.isEmpty()) {
+            for (Piloto piloto : this.Pilotos) {
+                if (piloto.getId() == idPiloto) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Equipo equipoAux = (Equipo) o;
+        return (Objects.equals(id, equipoAux.id) && Objects.equals(nombre, equipoAux.nombre)&&
+                Objects.equals(teamChief, equipoAux.teamChief)&& Objects.equals(techChief, equipoAux.techChief));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, teamChief, techChief);
+    }
+
+    public boolean isCocheinEquipo(Integer idCoche) {
+        if (!Coches.isEmpty()) {
+            for (Coche coche : this.Coches) {
+                if (coche.getId() == idCoche) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}

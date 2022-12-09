@@ -1,50 +1,61 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.ProyectoF1.proyectof1.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-/**
- *
- * @author joswald
- */
+import javax.persistence.*;
+
 @Entity
+@Table(name = "tbl_coche")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Coche {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "idCoche", nullable = false)
+    private Integer id;
+
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idEquipo", nullable = false)
+    @JsonIgnore
+    private Equipo Equipo;
+
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
+
+    @Column(name = "codigo", nullable = false, length = 45)
     private String codigo;
-    private Double ersCurvaLenta;
-    private Double ersCurvaMedia;
-    private Double ersCurvaRapida;
-    private Double consumo;
-    private Long idEquipo;
-    
-    public Coche(){}
 
-    public Coche(Long id, String nombre, String codigo, Double ersCurvaLenta, Double ersCurvaMedia, Double ersCurvaRapida, Double consumo, Long idEquipo) {
-        this.id = id;
-        this.nombre = nombre;
-        this.codigo = codigo;
-        this.ersCurvaLenta = ersCurvaLenta;
-        this.ersCurvaMedia = ersCurvaMedia;
-        this.ersCurvaRapida = ersCurvaRapida;
-        this.consumo = consumo;
-        this.idEquipo = idEquipo;
-    }
+    @Column(name = "ersCurvaLenta", length = 45)
+    private String ersCurvaLenta;
 
-    public Long getId() {
+    @Column(name = "ersCurvaMedia", length = 45)
+    private String ersCurvaMedia;
+
+    @Column(name = "ersCurvaRapida", length = 45)
+    private String ersCurvaRapida;
+
+    @Column(name = "consumo", length = 45)
+    private String consumo;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Equipo getEquipo() {
+        return Equipo;
+    }
+
+    public void setEquipo(Equipo idEquipo) {
+        this.Equipo = idEquipo;
     }
 
     public String getNombre() {
@@ -63,44 +74,36 @@ public class Coche {
         this.codigo = codigo;
     }
 
-    public Double getErsCurvaLenta() {
+    public String getErsCurvaLenta() {
         return ersCurvaLenta;
     }
 
-    public void setErsCurvaLenta(Double ersCurvaLenta) {
+    public void setErsCurvaLenta(String ersCurvaLenta) {
         this.ersCurvaLenta = ersCurvaLenta;
     }
 
-    public Double getErsCurvaMedia() {
+    public String getErsCurvaMedia() {
         return ersCurvaMedia;
     }
 
-    public void setErsCurvaMedia(Double ersCurvaMedia) {
+    public void setErsCurvaMedia(String ersCurvaMedia) {
         this.ersCurvaMedia = ersCurvaMedia;
     }
 
-    public Double getErsCurvaRapida() {
+    public String getErsCurvaRapida() {
         return ersCurvaRapida;
     }
 
-    public void setErsCurvaRapida(Double ersCurvaRapida) {
+    public void setErsCurvaRapida(String ersCurvaRapida) {
         this.ersCurvaRapida = ersCurvaRapida;
     }
 
-    public Double getConsumo() {
+    public String getConsumo() {
         return consumo;
     }
 
-    public void setConsumo(Double consumo) {
+    public void setConsumo(String consumo) {
         this.consumo = consumo;
     }
 
-    public Long getIdEquipo() {
-        return idEquipo;
-    }
-
-    public void setIdEquipo(Long idEquipo) {
-        this.idEquipo = idEquipo;
-    }
-    
 }

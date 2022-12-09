@@ -50,7 +50,7 @@ public class usuarioController {
           return UsuarioService.guardarUsuario(usuario);
     }
     @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("/save")
+    @PutMapping("/update")
     public boolean actualizarUsuario(@RequestBody Usuario usuario) {
         return UsuarioService.actualizarUsuario(usuario);
     }
