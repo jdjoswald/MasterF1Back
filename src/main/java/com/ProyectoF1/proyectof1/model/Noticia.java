@@ -28,7 +28,7 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Noticia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Column(name = "titulo", nullable = false)
     private String titulo;
     @Column(name = "imagen", nullable = false)
@@ -37,9 +37,9 @@ public class Noticia {
     private String texto;
     
     
-    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "idUsuario", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    
     @JsonIgnoreProperties("tbl_noticia")
     private Usuario idUsuario;
 
@@ -54,11 +54,11 @@ public class Noticia {
         this.idUsuario = idUsuario;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

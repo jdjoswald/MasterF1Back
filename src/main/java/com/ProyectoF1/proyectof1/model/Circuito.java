@@ -5,6 +5,8 @@
 package com.ProyectoF1.proyectof1.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -47,7 +50,9 @@ public class Circuito {
     private int curvasMedia;
      @Column(name = "curvasRapidas", nullable = false)
     private int curvasRapidas;
-    
+    @OneToMany(mappedBy = "circuito", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties(value = {"Tbl_circuito"})
+    private List<Carrera> carrera;
     
     public Circuito() {
     }
