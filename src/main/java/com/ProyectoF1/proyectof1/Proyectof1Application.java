@@ -39,8 +39,8 @@ public class Proyectof1Application {
            
            rolesService.guardarRol(new Rol("Admin"));
            rolesService.guardarRol(new Rol("Team Manager"));
-           Usuario user=new Usuario("admin", "admin","admin@admin.com", "admin", rolesService.buscarPorId(1));
-           user.setDefinitivo(true);
+           Usuario user=new Usuario("admin", "admin","admin@admin.com", "admin1234", rolesService.buscarPorId(1), null,true);
+           //user.setDefinitivo(true);
            usuarioService.guardarUsuario(user);
            
            
