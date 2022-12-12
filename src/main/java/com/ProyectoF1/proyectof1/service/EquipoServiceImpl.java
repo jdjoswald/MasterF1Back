@@ -64,10 +64,12 @@ public class EquipoServiceImpl implements IEquipoService{
 
     @Override
     public boolean actualizarEquipo(Equipo equipo){
-        if (equiposDAO.buscarEquipoPorNombre(equipo.getNombre()) != null) {
+        if (equiposDAO.buscarEquipoPorid(equipo.getId()) != null) { 
+            
             equiposDAO.guardarEquipo(equipo);
             return true;
         }
+        System.out.println("com.ProyectoF1.proyectof1.service.EquipoServiceImpl.actualizarEquipo()");
         return false;
     }
 
