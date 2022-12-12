@@ -48,12 +48,14 @@ public class Usuario {
 
     public Usuario(){}
 
+
     public Usuario(String nombre, String usuario, String email, String contrasena, Rol id_Rol, Equipo idEquipo, boolean definitivo) {
         this.nombre = nombre;
         this.usuario = usuario;
         this.email = email;
         this.contrasena = contrasena;
         this.id_Rol = id_Rol;
+
         this.idEquipo = idEquipo;
         this.definitivo = definitivo;
     }
@@ -66,8 +68,6 @@ public class Usuario {
     public void setIdEquipo(Equipo idEquipo) {
         this.idEquipo = idEquipo;
     }
-
-
 
     public Integer getId() {
         return id;

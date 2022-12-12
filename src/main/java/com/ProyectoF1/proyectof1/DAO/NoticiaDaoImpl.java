@@ -45,6 +45,9 @@ public class NoticiaDaoImpl implements INoticiaDAO{
 
     @Override
     public void eliminarNoticia(Integer idNoticia) {
+      /*  Noticia noti=buscarPorId(idNoticia);
+        noti.setIdUsuario(null);
+        guardarNoticia(noti);*/
         noticiaJPA.deleteById(idNoticia);
     }
     
