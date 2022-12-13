@@ -29,12 +29,11 @@ public class IEquiposDAOImpl implements IEquiposDAO {
     }
 
     @Override
-    public List<Equipo> buscarEquipoPorBase(String base) {
-        return equiposJPA.findByBaseContainingIgnoreCase(base);
+    public List<Equipo> buscarEquipoPorBase(String base) {return equiposJPA.findByBaseContainingIgnoreCase(base);
     }
 
     @Override
-    public Equipo buscarEquipoPorNombre(String nombre) {
+    public List<Equipo> buscarEquipoPorNombre(String nombre) {
         return equiposJPA.findByNombreContainingIgnoreCase(nombre);
     }
 

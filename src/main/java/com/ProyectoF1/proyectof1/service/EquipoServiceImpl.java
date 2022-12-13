@@ -37,7 +37,7 @@ public class EquipoServiceImpl implements IEquipoService{
     public List<Equipo> buscarEquipoPorBase(String base) {return equiposDAO.buscarEquipoPorBase(base);}
 
     @Override
-    public Equipo buscarEquipoPorNombre(String nombre) {return equiposDAO.buscarEquipoPorNombre(nombre); }
+    public List<Equipo> buscarEquipoPorNombre(String nombre) {return equiposDAO.buscarEquipoPorNombre(nombre); }
 
     @Override
     public boolean guardarEquipo(Equipo equipo) {

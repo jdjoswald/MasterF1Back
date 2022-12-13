@@ -27,7 +27,7 @@ public class equiposController {
     }
 
     @GetMapping("/find/nombre/{nombre}")
-    public Equipo buscarEquipoPorNombre(@PathVariable("nombre")String nombre){
+    public List<Equipo> buscarEquipoPorNombre(@PathVariable("nombre")String nombre){
         return equiposService.buscarEquipoPorNombre(nombre);
     }
     @GetMapping("/find/base/{base}")
