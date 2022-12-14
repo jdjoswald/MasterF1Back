@@ -42,6 +42,7 @@ public class Piloto implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo", nullable = true)
+    @JsonIgnoreProperties("pilotos")
     private Equipo equipo;
 
     public Integer getId() {

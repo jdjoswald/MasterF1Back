@@ -39,16 +39,16 @@ public class Equipo implements Serializable {
 
 
     @OneToMany(mappedBy = "equipo", fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("equipo")
     private List<Piloto> Pilotos = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "Equipo")
-    @JsonIgnore
+    @JsonIgnoreProperties("equipo")
     private List<Coche> Coches = new ArrayList<>();
     
     @OneToMany(mappedBy = "idEquipo")
-    @JsonIgnore
+    @JsonIgnoreProperties("equipo")
     private List<Usuario> users;
 
     private static final int MAX_PILOTOS = 2;

@@ -21,7 +21,7 @@ public class Coche {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idEquipo", nullable = false)
-    @JsonIgnore
+    @JsonIgnoreProperties("coches")
     private Equipo Equipo;
 
     @Column(name = "nombre", nullable = false, length = 100)
