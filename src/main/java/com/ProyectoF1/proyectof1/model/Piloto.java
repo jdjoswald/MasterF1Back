@@ -45,6 +45,21 @@ public class Piloto implements Serializable {
     @JsonIgnoreProperties("pilotos")
     private Equipo equipo;
 
+    public Piloto(String nombre, String apellidos, String siglas, String dorsal, String foto, String pais, String twitter) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.siglas = siglas;
+        this.dorsal = dorsal;
+        this.foto = foto;
+        this.pais = pais;
+        this.twitter = twitter;
+    }
+
+    public Piloto() {
+    }
+
+    
+    
     public Integer getId() {
         return id;
     }
