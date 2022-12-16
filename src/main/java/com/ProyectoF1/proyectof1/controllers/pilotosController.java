@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("pilotos")
+@CrossOrigin
 public class pilotosController {
 
     @Autowired
