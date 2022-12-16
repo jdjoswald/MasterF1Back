@@ -39,20 +39,32 @@ public class Equipo implements Serializable {
 
 
     @OneToMany(mappedBy = "equipo", fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("equipo")
     private List<Piloto> Pilotos = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "Equipo")
-    @JsonIgnore
+    @JsonIgnoreProperties("equipo")
     private List<Coche> Coches = new ArrayList<>();
     
     @OneToMany(mappedBy = "idEquipo")
-    @JsonIgnore
+    @JsonIgnoreProperties("equipo")
     private List<Usuario> users;
 
     private static final int MAX_PILOTOS = 2;
     private static final int MAX_COCHES = 4;
+
+    public Equipo(String logo, String twitter, String nombre, String base, String teamChief, String techChief) {
+        this.logo = logo;
+        this.twitter = twitter;
+        this.nombre = nombre;
+        this.base = base;
+        this.teamChief = teamChief;
+        this.techChief = techChief;
+    }
+
+    public Equipo() {
+    }
 
 
     public Integer getId() {

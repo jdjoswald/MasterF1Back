@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IEquiposJPA extends JpaRepository<Equipo,Integer>{
 
-   public Equipo findByNombreContainingIgnoreCase(String nombre);
+   public List<Equipo> findByNombreContainingIgnoreCase(String nombre);
 
    public Equipo findByTeamChiefContainingIgnoreCase(String teamchief);
 

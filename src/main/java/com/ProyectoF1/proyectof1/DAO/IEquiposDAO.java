@@ -13,7 +13,7 @@ public interface IEquiposDAO {
 
     public List<Equipo> buscarEquipoPorBase (String base);
 
-    public Equipo buscarEquipoPorNombre (String nombre);
+    public List<Equipo> buscarEquipoPorNombre (String nombre);
 
     public void guardarEquipo(Equipo equipo);
 
