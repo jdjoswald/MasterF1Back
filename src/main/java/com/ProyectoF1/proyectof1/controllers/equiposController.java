@@ -11,7 +11,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("equipos")
-@CrossOrigin()
+
+@CrossOrigin
+
 public class equiposController {
 
     @Autowired
