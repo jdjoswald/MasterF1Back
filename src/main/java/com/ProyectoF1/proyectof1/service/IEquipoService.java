@@ -15,7 +15,7 @@ public interface IEquipoService {
 
     public List<Equipo> buscarEquipoPorBase (String base);
 
-    public List<Equipo> buscarEquipoPorNombre (String nombre);
+    public Equipo buscarEquipoPorNombre (String nombre);
 
     public boolean guardarEquipo(Equipo equipo);
 
