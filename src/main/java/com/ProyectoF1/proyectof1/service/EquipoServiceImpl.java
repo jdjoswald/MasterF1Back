@@ -38,15 +38,13 @@ public class EquipoServiceImpl implements IEquipoService{
     public List<Equipo> buscarEquipoPorBase(String base) {return equiposDAO.buscarEquipoPorBase(base);}
 
     @Override
-    public List<Equipo> buscarEquipoPorNombre(String nombre) {return equiposDAO.buscarEquipoPorNombre(nombre); }
+    public Equipo buscarEquipoPorNombre(String nombre) {return equiposDAO.buscarEquipoPorNombre(nombre); }
 
     @Override
     public boolean guardarEquipo(Equipo equipo) {
-       System.out.println(equiposDAO.buscarEquipoPorNombre(equipo.getNombre()).size());
-       
-       if (equiposDAO.buscarEquipoPorNombre(equipo.getNombre()).isEmpty()) {
-           //  System.out.println("com.ProyectoF1.proyectof1.service.EquipoServiceImpl.guardarEquipo()");
-       
+       System.out.println(equiposDAO.buscarEquipoPorNombre(equipo.getNombre()));
+
+       if (equiposDAO.buscarEquipoPorNombre(equipo.getNombre())==null) {
             equiposDAO.guardarEquipo(equipo);
             return true;
         }
@@ -74,8 +72,7 @@ public class EquipoServiceImpl implements IEquipoService{
             equiposDAO.guardarEquipo(equipo);
             return true;
         }
-        System.out.println("com.ProyectoF1.proyectof1.service.EquipoServiceImpl.actualizarEquipo()");
-        return false;
+         return false;
     }
 
     @Override

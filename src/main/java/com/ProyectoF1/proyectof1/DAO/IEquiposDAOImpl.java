@@ -33,8 +33,8 @@ public class IEquiposDAOImpl implements IEquiposDAO {
     }
 
     @Override
-    public List<Equipo> buscarEquipoPorNombre(String nombre) {
-        return equiposJPA.findByNombreContainingIgnoreCase(nombre);
+    public Equipo buscarEquipoPorNombre(String nombre) {
+        return equiposJPA.findByNombreIgnoreCase((nombre));
     }
 
 
