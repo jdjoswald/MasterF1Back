@@ -21,10 +21,7 @@ public class IPilotosDAOImpl implements IPilotosDAO {
     @Override
     public Piloto buscarPilotoPorid(Integer id) {
         Optional<Piloto> optional = pilotosJPA.findById(id);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        return null;
+        return optional.orElse(null);
     }
 
     @Override
@@ -35,6 +32,21 @@ public class IPilotosDAOImpl implements IPilotosDAO {
     @Override
     public Piloto buscarPilotoPorNombreApellidos(String nombre, String apellidos) {
         return pilotosJPA.findByNombreAndApellidosContainsIgnoreCase(nombre, apellidos);
+    }
+
+    @Override
+    public List<Piloto> buscarPilotoPorNombre(String nombre) {
+        return  pilotosJPA.findByNombreIsLikeIgnoreCase(nombre);
+    }
+
+    @Override
+    public List<Piloto> buscarPilotoPorApellidos(String apellidos) {
+        return  pilotosJPA.findByApellidosIsLikeIgnoreCase(apellidos);
+    }
+
+    @Override
+    public List<Piloto> buscarPilotoPorPais(String pais) {
+        return pilotosJPA.findByPaisIsLikeIgnoreCase(pais);
     }
 
     @Override
@@ -57,7 +69,7 @@ public class IPilotosDAOImpl implements IPilotosDAO {
         Optional<Piloto> optionalPiloto = pilotosJPA.findById(idPiloto);
         if (optionalPiloto.isPresent()) {
             Piloto piloto = optionalPiloto.get();
-            piloto.setEquipo(new Equipo());
+            piloto.setEquipo(null);
             pilotosJPA.save(piloto);
         }
 

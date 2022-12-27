@@ -48,7 +48,7 @@ public class equiposController {
     }
 
     @DeleteMapping ("/delete/{id}")
-    public boolean deleteUserById(@PathVariable("id") Integer idEquipo){
+    public boolean deleteEquipoById(@PathVariable("id") Integer idEquipo){
         return equiposService.eliminarEquipo(idEquipo);
     }
 
