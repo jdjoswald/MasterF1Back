@@ -27,6 +27,9 @@ import org.hibernate.annotations.OnDeleteAction;
 /**
  *
  * @author Gregsoft
+ * 
+ * 
+ * sdsad
  */
 @Entity
 @Table(name="Tbl_Carrera")
