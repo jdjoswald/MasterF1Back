@@ -42,7 +42,8 @@ public class Carrera {
     private String fecha;
      @Column(name = "nombre", nullable = false, length = 150)
     private String nombre;
-    
+   @Column(name = "imagen", nullable = false, columnDefinition = "LONGTEXT")
+    private String imagen;
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "circuitoId", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -60,10 +61,20 @@ public class Carrera {
     public Carrera() {
     }
 
-    public Carrera(String fecha, String nombre) {
+
+
+    public Carrera(String fecha, String nombre, String imagen) {
         this.fecha = fecha;
         this.nombre = nombre;
-      
+        this.imagen = imagen;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Integer getId() {
