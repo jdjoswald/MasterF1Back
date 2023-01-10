@@ -53,7 +53,7 @@ public class Proyectof1Application {
            
            equipoService.guardarEquipo(equipo);
            
-            Piloto piloto = new Piloto("nombre", "apellidos", "siglas", "dorsal", "foto", "pais", "twitter");
+            Piloto piloto = new Piloto("nombre", "apellidos", "siglas", "dorsal", "foto", "pais","bandera", "twitter");
            piloto.setEquipo(equipo);
             pilotoService.guardarPiloto(piloto);
            

@@ -19,7 +19,7 @@ public class Equipo implements Serializable {
     private Integer id;
 
 
-    @Column(name = "logo")
+    @Column(name = "logo", nullable = false, columnDefinition = "LONGTEXT")
     private String logo;
 
     @Column(name = "twitter", length = 50)
