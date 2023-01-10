@@ -38,8 +38,24 @@ public class PilotoServiceImpl implements IPilotoService {
     }
 
     @Override
+    public List<Piloto> buscarPilotoPorNombre(String nombre) {
+        return pilotosDAO.buscarPilotoPorNombre(nombre);
+    }
+
+    @Override
+    public List<Piloto> buscarPilotoPorApellidos(String apellidos) {
+        return pilotosDAO.buscarPilotoPorApellidos(apellidos);
+    }
+
+    @Override
+    public List<Piloto> buscarPilotoPorPais(String pais) {
+        return pilotosDAO.buscarPilotoPorPais(pais);
+    }
+
+
+    @Override
     public boolean guardarPiloto(Piloto piloto) {
-        if (pilotosDAO.buscarPilotoPorNombreApellidos(piloto.getNombre(), piloto.getApellidos()) == null) {
+        if ((pilotosDAO.buscarPilotoPorNombreApellidos(piloto.getNombre(), piloto.getApellidos()) == null)&& piloto.getId() ==null) {
             pilotosDAO.guardarPiloto(piloto);
             return true;
         }
@@ -53,7 +69,7 @@ public class PilotoServiceImpl implements IPilotoService {
         if (piloto != null){
             Equipo equipo = piloto.getEquipo();
             equiposDAO.deletePiloto(equipo.getId(),id);
-            pilotosDAO.deleteEquipo(piloto.getId());
+            pilotosDAO.eliminarPiloto(piloto.getId());
             return true;
             }
         return false;
@@ -62,7 +78,7 @@ public class PilotoServiceImpl implements IPilotoService {
     @Override
     public boolean actualizarPiloto(Piloto piloto) {
         if (pilotosDAO.buscarPilotoPorNombreApellidos(piloto.getNombre(),piloto.getApellidos()) != null) {
-            pilotosDAO.guardarPiloto(piloto);
+            pilotosDAO.actualizarPiloto(piloto);
             return true;
         }
         return false;

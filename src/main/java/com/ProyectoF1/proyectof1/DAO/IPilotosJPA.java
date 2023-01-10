@@ -9,6 +9,11 @@ public interface IPilotosJPA extends JpaRepository<Piloto,Integer> {
 
     Piloto findByNombreAndApellidosContainsIgnoreCase(String nombre, String apellidos);
 
+    List<Piloto> findByNombreIsLikeIgnoreCase(String nombre);
+
+    List<Piloto> findByApellidosIsLikeIgnoreCase(String nombre);
+
+    List<Piloto> findByPaisIsLikeIgnoreCase(String pais);
     Piloto findBySiglasEqualsIgnoreCase(String siglas);
 
 

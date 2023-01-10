@@ -19,7 +19,7 @@ public class Equipo implements Serializable {
     private Integer id;
 
 
-    @Column(name = "logo")
+    @Column(name = "logo", nullable = false, columnDefinition = "LONGTEXT")
     private String logo;
 
     @Column(name = "twitter", length = 50)
@@ -142,6 +142,7 @@ public class Equipo implements Serializable {
             for (Piloto piloto: this.Pilotos){
                 if(piloto.getId()==idPiloto){
                     this.Pilotos.remove(piloto);
+                    return;
                 }
             }}
     }
@@ -157,11 +158,8 @@ public class Equipo implements Serializable {
 
     public void deleteCoche(Integer idCoche){
         if (!Coches.isEmpty()){
-            for (Coche coche: this.Coches){
-                if(coche.getId()==idCoche){
-                    this.Coches.remove(coche);
-                }
-            }}
+            this.Coches.removeIf(coche -> coche.getId() == idCoche);
+        }
     }
 
     public void setCoches(List<Coche> tblCoches) {

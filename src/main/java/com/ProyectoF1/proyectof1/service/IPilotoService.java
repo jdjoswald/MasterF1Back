@@ -16,6 +16,12 @@ public interface IPilotoService {
 
     public Piloto buscarPilotoPorNombreApellidos(String nombre, String apellidos);
 
+    public List<Piloto> buscarPilotoPorNombre(String nombre);
+
+    public List<Piloto> buscarPilotoPorApellidos(String apellidos);
+
+    public List<Piloto> buscarPilotoPorPais(String pais);
+
     public boolean guardarPiloto(Piloto piloto);
 
     public boolean eliminarPiloto(Integer id);
