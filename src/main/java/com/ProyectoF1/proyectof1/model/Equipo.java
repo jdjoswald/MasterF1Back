@@ -21,6 +21,9 @@ public class Equipo implements Serializable {
 
     @Column(name = "logo", nullable = false, columnDefinition = "LONGTEXT")
     private String logo;
+    
+     @Column(name = "bandera", nullable = false, columnDefinition = "LONGTEXT")
+    private String bandera;
 
     @Column(name = "twitter", length = 50)
     private String twitter;
@@ -54,14 +57,25 @@ public class Equipo implements Serializable {
     private static final int MAX_PILOTOS = 2;
     private static final int MAX_COCHES = 4;
 
-    public Equipo(String logo, String twitter, String nombre, String base, String teamChief, String techChief) {
+    public Equipo(String logo, String bandera, String twitter, String nombre, String base, String teamChief, String techChief) {
         this.logo = logo;
+        this.bandera = bandera;
         this.twitter = twitter;
         this.nombre = nombre;
         this.base = base;
         this.teamChief = teamChief;
         this.techChief = techChief;
     }
+
+    public String getBandera() {
+        return bandera;
+    }
+
+    public void setBandera(String bandera) {
+        this.bandera = bandera;
+    }
+
+  
 
     public Equipo() {
     }
@@ -182,12 +196,13 @@ public class Equipo implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Equipo equipoAux = (Equipo) o;
         return (Objects.equals(id, equipoAux.id) && Objects.equals(nombre, equipoAux.nombre)&&
-                Objects.equals(teamChief, equipoAux.teamChief)&& Objects.equals(techChief, equipoAux.techChief));
+                Objects.equals(teamChief, equipoAux.teamChief)&& Objects.equals(techChief, equipoAux.techChief)
+                && Objects.equals(bandera, equipoAux.bandera));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre, teamChief, techChief);
+        return Objects.hash(id, nombre, teamChief, techChief, bandera);
     }
 
     public boolean isCocheinEquipo(Integer idCoche) {
