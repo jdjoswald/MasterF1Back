@@ -21,6 +21,8 @@ public class Equipo implements Serializable {
 
     @Column(name = "logo", nullable = false, columnDefinition = "LONGTEXT")
     private String logo;
+
+    
      @Column(name = "bandera", nullable = false, columnDefinition = "LONGTEXT")
     private String bandera;
 
@@ -67,7 +69,10 @@ public class Equipo implements Serializable {
         this.techChief = techChief;
     }
 
-   
+
+
+  
+
 
     public Equipo() {
     }
@@ -198,6 +203,7 @@ public class Equipo implements Serializable {
         Equipo equipoAux = (Equipo) o;
         return (Objects.equals(id, equipoAux.id) && Objects.equals(nombre, equipoAux.nombre)&&
                Objects.equals(bandera, equipoAux.bandera)&&  Objects.equals(teamChief, equipoAux.teamChief)&& Objects.equals(techChief, equipoAux.techChief));
+
     }
 
     @Override
