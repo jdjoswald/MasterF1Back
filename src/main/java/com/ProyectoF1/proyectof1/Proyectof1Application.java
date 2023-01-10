@@ -49,7 +49,7 @@ public class Proyectof1Application {
            //user.setDefinitivo(true);
            usuarioService.guardarUsuario(user);
           
-           Equipo equipo = new Equipo("logo", "twitter", "nombre", "base", "teamChief", "techChief");
+           Equipo equipo = new Equipo("logo","bandera", "twitter", "nombre", "base", "teamChief", "techChief");
            
            equipoService.guardarEquipo(equipo);
            
