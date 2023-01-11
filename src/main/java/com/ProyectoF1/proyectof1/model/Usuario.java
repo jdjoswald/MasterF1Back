@@ -1,6 +1,9 @@
 package com.ProyectoF1.proyectof1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 import javax.persistence.*;
@@ -27,7 +30,7 @@ public class Usuario {
     private String contrasena;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_Rol",referencedColumnName = "idRol", nullable = true)
+    @JoinColumn(name = "idRol",referencedColumnName = "idRol", nullable = true)
     @JsonIgnoreProperties("tbl_usuario")
     private Rol id_Rol;
     
@@ -100,7 +103,8 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    @JsonIgnore
+    @JsonProperty(value = "contrasena")
     public String getContrasena() {
         return contrasena;
     }
