@@ -50,7 +50,7 @@ public class Proyectof1Application {
            usuarioService.guardarUsuario(user);
           
 
-           Equipo equipo = new Equipo("logo","bandera", "twitter", "nombre", "base", "teamChief", "techChief");
+           Equipo equipo = new Equipo("logo","logoGrande","bandera","portada", "twitter", "nombre", "base", "teamChief", "techChief");
 
            
            equipoService.guardarEquipo(equipo);
