@@ -1,59 +1,67 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.ProyectoF1.proyectof1.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-/**
- *
- * @author joswald
- */
+import javax.persistence.*;
+
 @Entity
+@Table(name = "tbl_voto")
 public class Voto {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long idPiloto;
-    private Long idUsuario;
-    
-    public Voto(){}
+    @Column(name = "idVoto", nullable = false)
+    private Integer id;
 
-    public Voto(Long id, Long idPiloto, Long idUsuario) {
-        this.id = id;
-        this.idPiloto = idPiloto;
-        this.idUsuario = idUsuario;
-    }
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idVotacion", nullable = false)
+    Votacion idVotacion;
 
-    public Long getId() {
+    @Column(name = "nombre", nullable = false, length = 45)
+    private String nombre;
+
+    @Column(name = "email", nullable = false, length = 50)
+    private String email;
+
+    @Column(name = "idPiloto", nullable = false)
+    private Integer idPiloto;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getIdPiloto() {
+    public Votacion getIdVotacion() {
+        return idVotacion;
+    }
+
+    public void setIdVotacion(Votacion idVotacion) {
+        this.idVotacion = idVotacion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getIdPiloto() {
         return idPiloto;
     }
 
-    public void setIdPiloto(Long idPiloto) {
+    public void setIdPiloto(Integer idPiloto) {
         this.idPiloto = idPiloto;
     }
 
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-    
-    
-    
 }

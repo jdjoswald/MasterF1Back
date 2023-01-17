@@ -1,50 +1,43 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.ProyectoF1.proyectof1.model;
 
-import java.sql.Timestamp;
-import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.ProyectoF1.proyectof1.model.Usuario;
 
-/**
- *
- * @author joswald
- */
+import javax.persistence.*;
+import java.time.LocalDate;
+
 @Entity
+@Table(name = "tbl_votacion")
 public class Votacion {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "idVotacion", nullable = false)
+    private Integer id;
+
+    @Column(name = "permalink", nullable = false, length = 250)
     private String permalink;
+
+    @Column(name = "titulo", nullable = false, length = 120)
     private String titulo;
+
+    @Lob
+    @Column(name = "descripcion")
     private String descripcion;
-    private Long idUsuario;
-    private Timestamp fechaInicio;
-    private Timestamp fechaCulminacion;
-    
-    public Votacion(){}
 
-    public Votacion(Long id, String permalink, String titulo, String descripcion, Long idUsuario, Timestamp fechaInicio, Timestamp fechaCulminacion) {
-        this.id = id;
-        this.permalink = permalink;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.idUsuario = idUsuario;
-        this.fechaInicio = fechaInicio;
-        this.fechaCulminacion = fechaCulminacion;
-    }
+    @Column(name = "fechaInicio", nullable = false)
+    private LocalDate fechaInicio;
 
-    public Long getId() {
+    @Column(name = "fechaCulminacion", nullable = false)
+    private LocalDate fechaCulminacion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idUsuario")
+    private Usuario idUsuario;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -72,33 +65,28 @@ public class Votacion {
         this.descripcion = descripcion;
     }
 
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public Timestamp getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Timestamp fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Timestamp getFechaCulminacion() {
+    public LocalDate getFechaCulminacion() {
         return fechaCulminacion;
     }
 
-    public void setFechaCulminacion(Timestamp fechaCulminacion) {
+    public void setFechaCulminacion(LocalDate fechaCulminacion) {
         this.fechaCulminacion = fechaCulminacion;
     }
-    
-    
-     
-    
-    
-    
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
 }

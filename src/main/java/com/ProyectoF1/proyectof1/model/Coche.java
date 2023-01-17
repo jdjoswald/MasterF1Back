@@ -1,7 +1,6 @@
 package com.ProyectoF1.proyectof1.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -18,12 +17,6 @@ public class Coche {
     @Column(name = "idCoche", nullable = false)
     private Integer id;
 
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idEquipo", nullable = false)
-    @JsonIgnoreProperties("coches")
-    private Equipo Equipo;
-
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
@@ -31,16 +24,22 @@ public class Coche {
     private String codigo;
 
     @Column(name = "ersCurvaLenta", length = 45)
-    private String ersCurvaLenta;
+    private double ersCurvaLenta;
 
     @Column(name = "ersCurvaMedia", length = 45)
-    private String ersCurvaMedia;
+    private double ersCurvaMedia;
 
     @Column(name = "ersCurvaRapida", length = 45)
-    private String ersCurvaRapida;
+    private double ersCurvaRapida;
 
     @Column(name = "consumo", length = 45)
-    private String consumo;
+    private double consumo;
+
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idEquipo", nullable = false)
+    @JsonIgnoreProperties("coches")
+    private Equipo Equipo;
 
     public Integer getId() {
         return id;
@@ -74,35 +73,35 @@ public class Coche {
         this.codigo = codigo;
     }
 
-    public String getErsCurvaLenta() {
+    public double getErsCurvaLenta() {
         return ersCurvaLenta;
     }
 
-    public void setErsCurvaLenta(String ersCurvaLenta) {
+    public void setErsCurvaLenta(double ersCurvaLenta) {
         this.ersCurvaLenta = ersCurvaLenta;
     }
 
-    public String getErsCurvaMedia() {
+    public double getErsCurvaMedia() {
         return ersCurvaMedia;
     }
 
-    public void setErsCurvaMedia(String ersCurvaMedia) {
+    public void setErsCurvaMedia(double ersCurvaMedia) {
         this.ersCurvaMedia = ersCurvaMedia;
     }
 
-    public String getErsCurvaRapida() {
+    public double getErsCurvaRapida() {
         return ersCurvaRapida;
     }
 
-    public void setErsCurvaRapida(String ersCurvaRapida) {
+    public void setErsCurvaRapida(double ersCurvaRapida) {
         this.ersCurvaRapida = ersCurvaRapida;
     }
 
-    public String getConsumo() {
+    public double getConsumo() {
         return consumo;
     }
 
-    public void setConsumo(String consumo) {
+    public void setConsumo(double consumo) {
         this.consumo = consumo;
     }
 

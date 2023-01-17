@@ -38,8 +38,10 @@ public class Usuario {
     @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo", nullable = true)
     @JsonIgnoreProperties("tbl_usuario")
     private Equipo idEquipo;
-    
-    
+
+    @OneToMany(mappedBy = "idUsuario")
+    @JsonIgnoreProperties(value = {"tbl_usuario"})
+    private List<Votacion> votaciones;
 
     @Column(name = "definitivo", nullable = false)
     private boolean definitivo;

@@ -22,11 +22,15 @@ public class usuarioController {
     public List<Usuario> buscarTodos(){
         return UsuarioService.buscarTodos();
     }
+
+
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/find/{id}")
     public Usuario buscarUsuarioPorid(@PathVariable("id")Integer id){
     return UsuarioService.buscarUsuarioPorid(id);
     }
+
+
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/find/users/{aprobados_flag}")/* Si busca no validados pasar false, si busca validados pasar true*/
     public List<Usuario> buscarUsuariosPorFlagDe(@PathVariable("aprobados_flag")boolean flag){
