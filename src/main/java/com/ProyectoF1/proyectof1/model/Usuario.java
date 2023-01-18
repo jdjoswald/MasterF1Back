@@ -34,8 +34,8 @@ public class Usuario {
     @JsonIgnoreProperties("tbl_usuario")
     private Rol id_Rol;
     
-    @ManyToOne(fetch = FetchType.EAGER, optional = true, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo", nullable = true)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo")
     @JsonIgnoreProperties("tbl_usuario")
     private Equipo idEquipo;
 

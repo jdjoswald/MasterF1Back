@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tbl_coche")
@@ -36,8 +37,8 @@ public class Coche {
     private double consumo;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idEquipo", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo", nullable = true)
     @JsonIgnoreProperties("coches")
     private Equipo Equipo;
 
@@ -103,6 +104,22 @@ public class Coche {
 
     public void setConsumo(double consumo) {
         this.consumo = consumo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Coche coche = (Coche) o;
+        return (Objects.equals(id, coche.id) && Objects.equals(nombre, coche.nombre) && Objects.equals(codigo, coche.codigo) &&
+                Objects.equals(ersCurvaLenta, coche.ersCurvaLenta) && Objects.equals(ersCurvaMedia, coche.ersCurvaMedia) &&
+                Objects.equals(ersCurvaRapida, coche.ersCurvaRapida) && Objects.equals(consumo, coche.consumo)
+                && Objects.equals(Equipo, coche.Equipo));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, codigo, ersCurvaLenta, ersCurvaMedia, ersCurvaRapida,consumo,Equipo);
     }
 
 }
