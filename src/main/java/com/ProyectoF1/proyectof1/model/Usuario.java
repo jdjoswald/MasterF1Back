@@ -45,10 +45,9 @@ public class Usuario {
 
     @Column(name = "definitivo", nullable = false)
     private boolean definitivo;
-    
-    @OneToMany(mappedBy="idUsuario",
-            cascade = CascadeType.ALL
-            )
+
+    @OneToMany(mappedBy = "idUsuario")
+    @JsonIgnoreProperties("tbl_usuario")
     private List<Noticia> noticia;
 
     public Usuario(){}

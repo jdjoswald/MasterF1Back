@@ -35,12 +35,11 @@ public class Noticia {
     private String imagen;
     @Column(name = "texto", nullable = false)
     private String texto;
-    
-    
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "idUsuario", nullable = false)
-    
-    @JsonIgnoreProperties("tbl_noticia")
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idUsuario",referencedColumnName = "idUsuario", nullable = true)
+    @JsonIgnoreProperties("noticia")
     private Usuario idUsuario;
 
     public Noticia() {
