@@ -1,6 +1,10 @@
 package com.ProyectoF1.proyectof1.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +17,7 @@ public class Voto {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idVotacion", nullable = false)
+    @JsonIgnoreProperties("votos")
     Votacion idVotacion;
 
     @Column(name = "nombre", nullable = false, length = 45)
@@ -40,6 +45,8 @@ public class Voto {
         this.idVotacion = idVotacion;
     }
 
+    @JsonIgnore
+    @JsonProperty(value = "nombre")
     public String getNombre() {
         return nombre;
     }
@@ -48,6 +55,8 @@ public class Voto {
         this.nombre = nombre;
     }
 
+    @JsonIgnore
+    @JsonProperty(value = "email")
     public String getEmail() {
         return email;
     }

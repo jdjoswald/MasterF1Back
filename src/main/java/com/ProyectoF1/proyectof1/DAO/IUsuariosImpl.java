@@ -54,16 +54,8 @@ public class IUsuariosImpl implements IUsuariosDAO{
 
     @Override
     public void guardarUsuario(Usuario usuario) {
-        System.out.println(usuario.getId());
-        System.out.println(usuario.getUsuario());
-        System.out.println(usuario.getNombre());
-        System.out.println(usuario.getEmail());
-        System.out.println(usuario.getContrasena());
-        System.out.println(usuario.getId_Rol().getId());
-        System.out.println(usuario.getId_Rol().getRol());
-        System.out.println(usuario.getDefinitivo());
-
-        usuariosJPA.save(usuario);
+        System.out.println("EQUIPO"+usuario.getIdEquipo());
+             usuariosJPA.save(usuario);
 
 
     }
@@ -72,5 +64,7 @@ public class IUsuariosImpl implements IUsuariosDAO{
     public void eliminarUsuario(Integer id) {usuariosJPA.deleteById(id);  }
 
     @Override
-    public void actualizarUsuario(Usuario usuario) {usuariosJPA.save(usuario);  }
+    public void actualizarUsuario(Usuario usuario) {
+        System.out.println("EQUIPO"+usuario.getIdEquipo());
+            usuariosJPA.save(usuario);  }
 }
