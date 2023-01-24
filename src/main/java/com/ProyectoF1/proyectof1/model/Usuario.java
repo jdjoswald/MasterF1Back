@@ -26,20 +26,20 @@ public class Usuario {
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "contrasena", nullable = false, length = 50)
+    @Column(name = "contrasena", length = 50)
     private String contrasena;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "idRol",referencedColumnName = "idRol", nullable = true)
     @JsonIgnoreProperties("tbl_usuario")
     private Rol id_Rol;
-    
+
     @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo")
-    @JsonIgnoreProperties("tbl_usuario")
+    @JsonIgnoreProperties("users")
     private Equipo idEquipo;
 
-    @OneToMany(mappedBy = "idUsuario")
+    @OneToMany(mappedBy = "Usuario", cascade = CascadeType.MERGE)
     @JsonIgnoreProperties(value = {"tbl_usuario"})
     private List<Votacion> votaciones;
 
