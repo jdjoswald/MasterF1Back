@@ -38,7 +38,7 @@ public class Circuito {
     private String ciudad;
      @Column(name = "pais", nullable = false, length = 150)
     private String pais;
-     @Column(name = "trazado", nullable = false, length = 150)
+     @Column(name = "trazado", nullable = false, length = 150, columnDefinition = "LONGTEXT")
     private String trazado;
      @Column(name = "numeroVueltas", nullable = false)
     private int numeroVueltas;
@@ -50,6 +50,8 @@ public class Circuito {
     private int curvasMedia;
      @Column(name = "curvasRapidas", nullable = false)
     private int curvasRapidas;
+        @Column(name = "foto", nullable = false, columnDefinition = "LONGTEXT")
+    private String foto;
     @OneToMany(mappedBy = "circuito", fetch = FetchType.EAGER)
     @JsonIgnoreProperties(value = {"Tbl_circuito"})
     private List<Carrera> carrera;
@@ -57,7 +59,7 @@ public class Circuito {
     public Circuito() {
     }
 
-    public Circuito(String nombre, String ciudad, String pais, String trazado, int numeroVueltas, double longitud, int curvasLentas, int curvasMedia, int curvasRapidas) {
+    public Circuito(String nombre, String ciudad, String pais, String trazado, int numeroVueltas, double longitud, int curvasLentas, int curvasMedia, int curvasRapidas, String foto) {
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.pais = pais;
@@ -67,7 +69,18 @@ public class Circuito {
         this.curvasLentas = curvasLentas;
         this.curvasMedia = curvasMedia;
         this.curvasRapidas = curvasRapidas;
+        this.foto = foto;
     }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+
 
     public String getNombre() {
         return nombre;

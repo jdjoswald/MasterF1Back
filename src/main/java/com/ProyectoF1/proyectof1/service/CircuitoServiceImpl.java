@@ -46,5 +46,10 @@ public class CircuitoServiceImpl implements ICircuitoService{
         circuitoDao.eliminarCircuito(idCircuito);
         return true;
     }
+
+    @Override
+    public List<Circuito> buscarPorNombre(String nombre) {
+        return circuitoDao.buscarPorNombre(nombre);
+    }
     
 }
