@@ -40,7 +40,7 @@ public class Proyectof1Application {
 
            
             
-           Circuito cir = new Circuito("Circuito de prueba", "ciudad", "pais", "trazado", 0, 0, 0, 0, 0);
+           Circuito cir = new Circuito("Circuito de prueba", "ciudad", "pais", "trazado", 0, 0, 0, 0, 0,"foto");
            circuitoService.guardarCircuito(cir);
            
            rolesService.guardarRol(new Rol("Admin"));
@@ -55,7 +55,7 @@ public class Proyectof1Application {
            
            equipoService.guardarEquipo(equipo);
            
-            Piloto piloto = new Piloto("nombre", "apellidos", "siglas", "dorsal", "foto", "pais","bandera", "twitter");
+            Piloto piloto = new Piloto("nombre", "apellidos", "siglas", "dorsal", "foto", "pais", "twitter");
            piloto.setEquipo(equipo);
             pilotoService.guardarPiloto(piloto);
            

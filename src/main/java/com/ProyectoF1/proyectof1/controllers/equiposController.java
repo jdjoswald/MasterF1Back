@@ -11,9 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("equipos")
-
-@CrossOrigin
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class equiposController {
 
     @Autowired
@@ -38,11 +36,13 @@ public class equiposController {
         return equiposService.buscarEquipoPorBase(base);
     }
     @PostMapping("/save")
+    @CrossOrigin(origins = "http://localhost:3000")
     public boolean crearEquipo(@RequestBody Equipo equipo){
         return equiposService.guardarEquipo(equipo);
     }
 
     @PutMapping("/update")
+    @CrossOrigin(origins = "http://localhost:3000")
     public boolean actualizarEquipo(@RequestBody Equipo equipo) {
         return equiposService.actualizarEquipo(equipo);
     }

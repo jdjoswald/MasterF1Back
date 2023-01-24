@@ -14,6 +14,7 @@ import java.util.List;
 public interface ICircuitoService {
     
     List<Circuito> buscarTodos();
+    List<Circuito> buscarPorNombre(String nombre);
     Circuito buscarPorId(Integer idCircuito);
     Circuito guardarCircuito(Circuito circuito);
     void actualizarCircuito(Circuito circuito);

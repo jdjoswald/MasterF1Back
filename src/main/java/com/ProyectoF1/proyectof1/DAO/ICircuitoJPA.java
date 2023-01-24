@@ -5,6 +5,7 @@
 package com.ProyectoF1.proyectof1.DAO;
 
 import com.ProyectoF1.proyectof1.model.Circuito;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -12,5 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author joswald
  */
 public interface ICircuitoJPA extends JpaRepository<Circuito, Integer>{
-    
+     List<Circuito> findByNombreContainingIgnoreCase(String nombre);
 }
