@@ -10,6 +10,7 @@ import com.ProyectoF1.proyectof1.service.IUsuarioService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,5 +53,18 @@ public class circuitoController {
        
         return circuitoService.guardarCircuito(circuito);
     }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @DeleteMapping ("/delete/{id}")
+    public boolean deleteCircuitoById(@PathVariable("id") Integer idCircuito){
+       
+        return circuitoService.eliminarCircuito(idCircuito);
+    }
+    @GetMapping("/nombre/{nombre}")
+    public List<Circuito> PeliculaPortitulo(@PathVariable("nombre") String nombre) {
+        //System.out.println(id+"kk");
+        return circuitoService.buscarPorNombre(nombre) ;
+    }
+    
     
 }
+ 

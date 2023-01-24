@@ -35,26 +35,25 @@ public class Piloto implements Serializable {
 
     @Column(name = "pais", length = 120)
     private String pais;
-      @Column(name = "bandera", nullable = false, columnDefinition = "LONGTEXT")
-    private String bandera;
+    
 
     @Column(name = "twitter", length = 45)
     private String twitter;
 
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo", nullable = true)
     @JsonIgnoreProperties("pilotos")
     private Equipo equipo;
 
-    public Piloto(String nombre, String apellidos, String siglas, String dorsal, String foto, String pais, String bandera, String twitter) {
+    public Piloto(String nombre, String apellidos, String siglas, String dorsal, String foto, String pais, String twitter) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.siglas = siglas;
         this.dorsal = dorsal;
         this.foto = foto;
         this.pais = pais;
-        this.bandera = bandera;
+       
         this.twitter = twitter;
     }
 
@@ -63,13 +62,7 @@ public class Piloto implements Serializable {
     public Piloto() {
     }
 
-    public String getBandera() {
-        return bandera;
-    }
 
-    public void setBandera(String bandera) {
-        this.bandera = bandera;
-    }
 
     
     
@@ -151,12 +144,12 @@ public class Piloto implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Piloto piloto = (Piloto) o;
         return (Objects.equals(id, piloto.id) && Objects.equals(nombre, piloto.nombre) && Objects.equals(apellidos, piloto.apellidos) &&
-                Objects.equals(bandera, piloto.bandera) && Objects.equals(siglas, piloto.siglas) && Objects.equals(pais, piloto.pais));
+                 Objects.equals(siglas, piloto.siglas) && Objects.equals(pais, piloto.pais));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nombre, apellidos, siglas, pais, bandera);
+        return Objects.hash(nombre, apellidos, siglas, pais);
     }
 
 }
