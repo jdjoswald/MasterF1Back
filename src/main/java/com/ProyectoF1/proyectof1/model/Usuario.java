@@ -1,6 +1,9 @@
 package com.ProyectoF1.proyectof1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 import javax.persistence.*;
@@ -27,23 +30,24 @@ public class Usuario {
     private String contrasena;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_Rol",referencedColumnName = "idRol", nullable = true)
+    @JoinColumn(name = "idRol",referencedColumnName = "idRol", nullable = true)
     @JsonIgnoreProperties("tbl_usuario")
     private Rol id_Rol;
     
-    @ManyToOne(fetch = FetchType.EAGER, optional = true, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo", nullable = true)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo")
     @JsonIgnoreProperties("tbl_usuario")
     private Equipo idEquipo;
-    
-    
+
+    @OneToMany(mappedBy = "idUsuario")
+    @JsonIgnoreProperties(value = {"tbl_usuario"})
+    private List<Votacion> votaciones;
 
     @Column(name = "definitivo", nullable = false)
     private boolean definitivo;
-    
-    @OneToMany(mappedBy="idUsuario",
-            cascade = CascadeType.ALL
-            )
+
+    @OneToMany(mappedBy = "idUsuario")
+    @JsonIgnoreProperties("tbl_usuario")
     private List<Noticia> noticia;
 
     public Usuario(){}
@@ -100,7 +104,8 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    @JsonIgnore
+    @JsonProperty(value = "contrasena")
     public String getContrasena() {
         return contrasena;
     }

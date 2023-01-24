@@ -20,6 +20,7 @@ public class Rol {
     @OneToMany(mappedBy = "id_Rol", fetch = FetchType.EAGER)
     @JsonIgnoreProperties(value = {"tbl_rol"})
     private List<Usuario> users;
+
     public Integer getId() {
         return id;
     }

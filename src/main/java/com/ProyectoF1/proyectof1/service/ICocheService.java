@@ -1,11 +1,11 @@
-package com.ProyectoF1.proyectof1.DAO;
+package com.ProyectoF1.proyectof1.service;
 
 import com.ProyectoF1.proyectof1.model.Coche;
 import com.ProyectoF1.proyectof1.model.Equipo;
 
 import java.util.List;
 
-public interface ICochesDAO {
+public interface ICocheService {
 
     public List<Coche> buscarTodos() ;
 
@@ -17,16 +17,16 @@ public interface ICochesDAO {
     public List<Coche> buscarCochePorNombre(String nombre);
 
 
-    public void guardarCoche(Coche coche);
+    public boolean guardarCoche(Coche coche);
 
 
-    public void eliminarCoche(Integer id);
+    public boolean eliminarCoche(Integer id);
 
 
-    public void actualizarCoche(Coche coche);
+    public boolean actualizarCoche(Coche coche);
 
-    public void addEquipo(Integer idCoche, Equipo equipo);
+    public boolean addEquipo(Integer idCoche, Integer idEquipo);
 
 
-    public void deleteEquipo(Integer idCoche);
+    public boolean deleteEquipo(Integer idCoche);
 }

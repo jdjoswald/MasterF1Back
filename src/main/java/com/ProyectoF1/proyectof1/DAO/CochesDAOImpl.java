@@ -2,7 +2,6 @@ package com.ProyectoF1.proyectof1.DAO;
 
 import com.ProyectoF1.proyectof1.model.Coche;
 import com.ProyectoF1.proyectof1.model.Equipo;
-import com.ProyectoF1.proyectof1.model.Piloto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class ICochesDAOImpl implements ICochesDAO {
+public class CochesDAOImpl implements ICochesDAO {
     @Autowired
     ICochesJPA cochesJPA;
 
@@ -31,7 +30,7 @@ public class ICochesDAOImpl implements ICochesDAO {
     }
 
     @Override
-    public Coche buscarCochePorNombre(String nombre) {
+    public List<Coche> buscarCochePorNombre(String nombre) {
         return cochesJPA.findByNombreContainingIgnoreCase(nombre);
     }
 

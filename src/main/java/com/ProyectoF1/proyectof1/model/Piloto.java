@@ -7,7 +7,7 @@ import java.util.Objects;
 
 
 @Entity
-@Table(name = "tbl_piloto", schema="uah_mad_g5")
+@Table(name = "tbl_piloto")
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
@@ -35,13 +35,18 @@ public class Piloto implements Serializable {
 
     @Column(name = "pais", length = 120)
     private String pais;
-    
+
+      @Column(name = "bandera", columnDefinition = "LONGTEXT")
+    private String bandera;
+
 
     @Column(name = "twitter", length = 45)
     private String twitter;
 
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+
+    @ManyToOne(fetch = FetchType.EAGER)
+
     @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo", nullable = true)
     @JsonIgnoreProperties("pilotos")
     private Equipo equipo;

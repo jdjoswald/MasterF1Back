@@ -7,10 +7,8 @@ import java.io.Serializable;
 import java.util.*;
 
 @Entity
-@Table(name = "tbl_equipo",schema="uah_mad_g5")
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+@Table(name = "tbl_equipo")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Equipo implements Serializable {
 
     @Id
@@ -25,7 +23,7 @@ public class Equipo implements Serializable {
     private String logoGrande;
 
     
-     @Column(name = "bandera", nullable = false, columnDefinition = "LONGTEXT")
+     @Column(name = "bandera", columnDefinition = "LONGTEXT")
     private String bandera;
      
      @Column(name = "portada", nullable = true, columnDefinition = "LONGTEXT")

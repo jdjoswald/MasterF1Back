@@ -55,9 +55,8 @@ public class Carrera {
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "Tbl_carrera_piloto", 
-               joinColumns = { @JoinColumn( name="fk_carrera") },
-               inverseJoinColumns = { @JoinColumn(name = "fk_piloto") })  
-    //@JsonIgnoreProperties("fk_pelicula")
+               joinColumns = { @JoinColumn( name="idCarrera") },
+               inverseJoinColumns = { @JoinColumn(name = "idPiloto") })
     @JsonBackReference
     Set<Piloto> pilotos;
 
