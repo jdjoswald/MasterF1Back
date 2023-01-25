@@ -35,6 +35,9 @@ public class Coche {
 
     @Column(name = "consumo", length = 45)
     private double consumo;
+    
+     @Column(name = "foto", nullable = true, columnDefinition = "LONGTEXT")
+    private String foto;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
