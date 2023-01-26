@@ -15,7 +15,7 @@ public interface IEquiposDAO {
 
     public Equipo buscarEquipoPorNombre (String nombre);
 
-    public void guardarEquipo(Equipo equipo);
+    public Equipo guardarEquipo(Equipo equipo);
 
     public void eliminarEquipo (Integer id);
 

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.apache.commons.io.IOUtils;
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.Clock;
 import java.util.*;
 
 
@@ -41,14 +40,13 @@ public class EquipoServiceImpl implements IEquipoService{
     public Equipo buscarEquipoPorNombre(String nombre) {return equiposDAO.buscarEquipoPorNombre(nombre); }
 
     @Override
-    public boolean guardarEquipo(Equipo equipo) {
+    public Equipo guardarEquipo(Equipo equipo) {
        System.out.println(equiposDAO.buscarEquipoPorNombre(equipo.getNombre()));
 
        if (equiposDAO.buscarEquipoPorNombre(equipo.getNombre())==null) {
-            equiposDAO.guardarEquipo(equipo);
-            return true;
+            return equiposDAO.guardarEquipo(equipo);
         }
-        return false;
+       return null;
     }
 
     @Override
