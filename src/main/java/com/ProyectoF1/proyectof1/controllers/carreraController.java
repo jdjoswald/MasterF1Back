@@ -14,6 +14,7 @@ import com.ProyectoF1.proyectof1.service.ICircuitoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,6 +65,12 @@ public class carreraController {
        
         return carreraService.guardarCarrera(carrera);
     }
+    @DeleteMapping("/delete/{id}")
+    public boolean delete(@PathVariable("id") Integer idCarrera){
+       
+        return carreraService.eliminarCarrera(idCarrera);
+    }
+    
     
     
 }

@@ -33,7 +33,7 @@ public class Noticia {
     private String titulo;
     @Column(name = "imagen", nullable = false, columnDefinition = "LONGTEXT")
     private String imagen;
-    @Column(name = "texto", nullable = false)
+    @Column(name = "texto", nullable = false, columnDefinition = "LONGTEXT")
     private String texto;
 
 

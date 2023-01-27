@@ -45,6 +45,15 @@ public class Coche {
     @JsonIgnoreProperties("coches")
     private Equipo Equipo;
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    
     public Integer getId() {
         return id;
     }
