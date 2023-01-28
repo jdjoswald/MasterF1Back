@@ -45,7 +45,7 @@ public class usuarioController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/login/{email}/{passwd}")
-    public String login(@PathVariable("email")String email, @PathVariable("passwd")String passwd){
+    public Usuario login(@PathVariable("email")String email, @PathVariable("passwd")String passwd){
         return  UsuarioService.buscarUsuarioPorEmailAndPasswd(email, passwd);
       }
     @CrossOrigin(origins = "http://localhost:3000")

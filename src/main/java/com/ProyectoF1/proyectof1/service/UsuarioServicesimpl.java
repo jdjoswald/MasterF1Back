@@ -38,12 +38,9 @@ public class UsuarioServicesimpl implements IUsuarioService{
     }
 
     @Override
-    public String buscarUsuarioPorEmailAndPasswd(String email, String passwd) {
+    public Usuario buscarUsuarioPorEmailAndPasswd(String email, String passwd) {
         Usuario usuario = usuariosDAO.buscarUsuarioPorEmailAndPasswd(email, passwd);
-        if (usuario != null) {
-            return usuario.getUsuario();
-        }
-        return "";
+        return usuario;
     }
 
     @Override
