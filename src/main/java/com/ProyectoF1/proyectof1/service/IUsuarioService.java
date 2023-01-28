@@ -13,7 +13,7 @@ public interface IUsuarioService {
     public Usuario buscarUsuarioPorid(Integer id);
     public List<Usuario> buscarUsuarioPorNombre(String nombre);
     
-    public String buscarUsuarioPorEmailAndPasswd(String email, String passwd);
+    public Usuario buscarUsuarioPorEmailAndPasswd(String email, String passwd);
     
     public Usuario buscarUsuarioporNUsuario(String usuario);
     
