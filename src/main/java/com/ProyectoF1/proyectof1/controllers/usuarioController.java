@@ -59,9 +59,9 @@ public class usuarioController {
         return UsuarioService.actualizarUsuario(usuario);
     }
     @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("/aprobarUsuarios")
-    public boolean aprobarUsuario(@RequestBody List<Usuario> usuarios) {
-        return UsuarioService.aprobarUsuario(usuarios);
+    @PutMapping("/aprobarUsuario")
+    public boolean aprobarUsuario(@RequestBody Integer id) {
+        return UsuarioService.aprobarUsuario(id);
     }
     @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping ("/delete/{email}")

@@ -101,17 +101,14 @@ public class UsuarioServicesimpl implements IUsuarioService{
     }
 
     @Override
-    public boolean aprobarUsuario(List <Usuario> usuarios) {
+    public boolean aprobarUsuario(Integer id) {
         boolean resultado = false;
-        for (Usuario usuario: usuarios){
-            Usuario user = usuariosDAO.buscarUsuarioporEmail(usuario.getEmail());
+            Usuario user = usuariosDAO.buscarUsuarioPorid(id);
             if (user!=null){
                 user.setDefinitivo(true);
                 usuariosDAO.actualizarUsuario(user);
                 resultado = true;
             }else{resultado=false;}
-        }
         return resultado;
-
     }
 }
