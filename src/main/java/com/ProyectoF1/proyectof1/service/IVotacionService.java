@@ -3,6 +3,7 @@ import com.ProyectoF1.proyectof1.model.Votacion;
 import com.ProyectoF1.proyectof1.model.Voto;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 public interface IVotacionService {
@@ -30,4 +31,5 @@ public interface IVotacionService {
 
     public boolean actualizarVotacion(Votacion votacion);
 
+    HashMap<String, Integer> resultadosVotacion(Integer idVotacion);
 }

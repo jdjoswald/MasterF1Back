@@ -1,12 +1,13 @@
 package com.ProyectoF1.proyectof1.controllers;
 
-import com.ProyectoF1.proyectof1.model.Usuario;
+import com.ProyectoF1.proyectof1.model.Piloto;
 import com.ProyectoF1.proyectof1.model.Votacion;
 import com.ProyectoF1.proyectof1.model.Voto;
 import com.ProyectoF1.proyectof1.service.IVotacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -50,5 +51,9 @@ public class VotacionController {
 
         return votacionesService.votar(idVotacion,voto);
     }
+    @GetMapping("/resultados/{idVotacion}")
+    public HashMap<String, Integer> resultadosVotacion(@PathVariable("idVotacion") Integer idVotacion){
 
+        return votacionesService.resultadosVotacion(idVotacion);
+    }
 }
