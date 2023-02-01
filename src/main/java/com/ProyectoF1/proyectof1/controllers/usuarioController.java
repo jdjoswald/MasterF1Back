@@ -59,6 +59,15 @@ public class usuarioController {
         return UsuarioService.actualizarUsuario(usuario);
     }
     @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping("/delTeam/{id}")
+    public boolean delTeam(@PathVariable("id")Integer id) {
+        
+      Usuario usuario =UsuarioService.buscarUsuarioPorid(id);
+      usuario.setIdEquipo(null);
+      
+      return UsuarioService.actualizarUsuario(usuario);
+    }
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/aprobarUsuarios")
     public boolean aprobarUsuario(@RequestBody List<Usuario> usuarios) {
         return UsuarioService.aprobarUsuario(usuarios);
