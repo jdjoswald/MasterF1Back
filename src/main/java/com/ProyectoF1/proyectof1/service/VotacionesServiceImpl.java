@@ -1,5 +1,6 @@
 package com.ProyectoF1.proyectof1.service;
 
+import com.ProyectoF1.proyectof1.DAO.IPilotosDAO;
 import com.ProyectoF1.proyectof1.DAO.IVotacionDAO;
 import com.ProyectoF1.proyectof1.DAO.IVotosDAO;
 import com.ProyectoF1.proyectof1.model.Votacion;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -18,6 +20,9 @@ public class VotacionesServiceImpl implements IVotacionService{
 
     @Autowired
     IVotosDAO votosDAO;
+
+    @Autowired
+    IPilotosDAO pilotosDAO;
 
     @Override
     public List<Votacion> buscarTodas() {
@@ -82,4 +87,25 @@ public class VotacionesServiceImpl implements IVotacionService{
         votacionDAO.actualizarVotacion(votacion);
         return true;
     }
+
+    @Override
+    public HashMap<String, Integer> resultadosVotacion(Integer idVotacion) {
+        HashMap<String,Integer> resultados = new HashMap<>();
+        Votacion votacion = votacionDAO.buscarVotacionPorid(idVotacion);
+        String piloto = "";
+        if (votacion != null){
+            List<Voto> votos= votacion.getVotos();
+            for(Voto voto:votos){
+                piloto = pilotosDAO.buscarPilotoPorid(voto.getIdPiloto()).getNombre();
+                    if ((!resultados.containsKey(piloto))){
+                        resultados.put(piloto,1);
+                    }else{
+                        resultados.replace(piloto, resultados.get(piloto)+1);
+                    }
+                }
+            }
+        return resultados;
+    }
+
+
 }
