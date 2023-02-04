@@ -59,8 +59,8 @@ public class usuarioController {
         return UsuarioService.actualizarUsuario(usuario);
     }
     @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("/aprobarUsuario")
-    public boolean aprobarUsuario(@RequestBody Integer id) {
+    @PutMapping("/aprobarUsuario/{id}")
+    public boolean aprobarUsuario(@PathVariable("id") Integer id) {
         return UsuarioService.aprobarUsuario(id);
     }
     @CrossOrigin(origins = "http://localhost:3000")
