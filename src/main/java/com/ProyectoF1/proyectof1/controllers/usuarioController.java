@@ -62,7 +62,7 @@ public class usuarioController {
 
     @PutMapping("/aprobarUsuario/{id}")
     public boolean aprobarUsuario(@PathVariable("id") Integer id) {
-        return UsuarioService.aprobarUsuario(id);
+        return UsuarioService.aprobarUsuario(id);}
 
     @PutMapping("/delTeam/{id}")
     public boolean delTeam(@PathVariable("id")Integer id) {
