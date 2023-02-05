@@ -110,6 +110,14 @@ public class Equipo implements Serializable {
         this.id = id;
     }
 
+    public List<Usuario> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<Usuario> users) {
+        this.users = users;
+    }
+
     public String getLogo() {
         return logo;
     }

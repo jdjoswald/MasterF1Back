@@ -59,10 +59,20 @@ public class usuarioController {
         return UsuarioService.actualizarUsuario(usuario);
     }
     @CrossOrigin(origins = "http://localhost:3000")
+
     @PutMapping("/aprobarUsuario/{id}")
     public boolean aprobarUsuario(@PathVariable("id") Integer id) {
         return UsuarioService.aprobarUsuario(id);
+
+    @PutMapping("/delTeam/{id}")
+    public boolean delTeam(@PathVariable("id")Integer id) {
+        
+      Usuario usuario =UsuarioService.buscarUsuarioPorid(id);
+      usuario.setIdEquipo(null);
+      
+      return UsuarioService.actualizarUsuario(usuario);
     }
+   
     @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping ("/delete/{email}")
     public boolean deleteUserById(@PathVariable("email") String email){

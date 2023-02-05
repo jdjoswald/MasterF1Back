@@ -90,8 +90,12 @@ public class UsuarioServicesimpl implements IUsuarioService{
     @Override
     public boolean actualizarUsuario(Usuario usuario) {
         if (usuariosDAO.buscarUsuarioPorid(usuario.getId())!= null){
-            Equipo equipo= equipoDAO.buscarEquipoPorid(usuario.getIdEquipo().getId());
-                    usuario.setIdEquipo(equipo);
+            if(usuario.getIdEquipo()!=null){
+                 Equipo equipo= equipoDAO.buscarEquipoPorid(usuario.getIdEquipo().getId());
+                  usuario.setIdEquipo(equipo);
+            }
+           
+                   
         usuariosDAO.guardarUsuario(usuario);
         return true;
     }
