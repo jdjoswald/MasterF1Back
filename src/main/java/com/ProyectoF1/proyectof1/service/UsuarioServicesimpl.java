@@ -38,12 +38,9 @@ public class UsuarioServicesimpl implements IUsuarioService{
     }
 
     @Override
-    public String buscarUsuarioPorEmailAndPasswd(String email, String passwd) {
+    public Usuario buscarUsuarioPorEmailAndPasswd(String email, String passwd) {
         Usuario usuario = usuariosDAO.buscarUsuarioPorEmailAndPasswd(email, passwd);
-        if (usuario != null) {
-            return usuario.getUsuario();
-        }
-        return "";
+        return usuario;
     }
 
     @Override
@@ -108,17 +105,14 @@ public class UsuarioServicesimpl implements IUsuarioService{
     }
 
     @Override
-    public boolean aprobarUsuario(List <Usuario> usuarios) {
+    public boolean aprobarUsuario(Integer id) {
         boolean resultado = false;
-        for (Usuario usuario: usuarios){
-            Usuario user = usuariosDAO.buscarUsuarioporEmail(usuario.getEmail());
+            Usuario user = usuariosDAO.buscarUsuarioPorid(id);
             if (user!=null){
                 user.setDefinitivo(true);
                 usuariosDAO.actualizarUsuario(user);
                 resultado = true;
             }else{resultado=false;}
-        }
         return resultado;
-
     }
 }

@@ -45,7 +45,7 @@ public class usuarioController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/login/{email}/{passwd}")
-    public String login(@PathVariable("email")String email, @PathVariable("passwd")String passwd){
+    public Usuario login(@PathVariable("email")String email, @PathVariable("passwd")String passwd){
         return  UsuarioService.buscarUsuarioPorEmailAndPasswd(email, passwd);
       }
     @CrossOrigin(origins = "http://localhost:3000")
@@ -59,6 +59,11 @@ public class usuarioController {
         return UsuarioService.actualizarUsuario(usuario);
     }
     @CrossOrigin(origins = "http://localhost:3000")
+
+    @PutMapping("/aprobarUsuario/{id}")
+    public boolean aprobarUsuario(@PathVariable("id") Integer id) {
+        return UsuarioService.aprobarUsuario(id);
+
     @PutMapping("/delTeam/{id}")
     public boolean delTeam(@PathVariable("id")Integer id) {
         
@@ -67,11 +72,7 @@ public class usuarioController {
       
       return UsuarioService.actualizarUsuario(usuario);
     }
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("/aprobarUsuarios")
-    public boolean aprobarUsuario(@RequestBody List<Usuario> usuarios) {
-        return UsuarioService.aprobarUsuario(usuarios);
-    }
+   
     @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping ("/delete/{email}")
     public boolean deleteUserById(@PathVariable("email") String email){
