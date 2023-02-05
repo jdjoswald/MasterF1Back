@@ -1,4 +1,5 @@
 package com.ProyectoF1.proyectof1.service;
+import com.ProyectoF1.proyectof1.model.Recuento;
 import com.ProyectoF1.proyectof1.model.Votacion;
 import com.ProyectoF1.proyectof1.model.Voto;
 
@@ -15,6 +16,8 @@ public interface IVotacionService {
 
 
     public List<Votacion> buscarVotacionPorTitulo(String titulo);
+    
+    public List<Recuento> recuento(Integer idVotacion);
 
 
     public List<Votacion> buscarVotacionesPorFechaInicio(LocalDate fechaInicio);

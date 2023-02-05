@@ -1,6 +1,7 @@
 package com.ProyectoF1.proyectof1.controllers;
 
 import com.ProyectoF1.proyectof1.model.Piloto;
+import com.ProyectoF1.proyectof1.model.Recuento;
 import com.ProyectoF1.proyectof1.model.Votacion;
 import com.ProyectoF1.proyectof1.model.Voto;
 import com.ProyectoF1.proyectof1.service.IVotacionService;
@@ -52,8 +53,8 @@ public class VotacionController {
         return votacionesService.votar(idVotacion,voto);
     }
     @GetMapping("/resultados/{idVotacion}")
-    public HashMap<String, Integer> resultadosVotacion(@PathVariable("idVotacion") Integer idVotacion){
-
-        return votacionesService.resultadosVotacion(idVotacion);
+    public List<Recuento> resultadosVotacion(@PathVariable("idVotacion") Integer idVotacion){
+        System.out.println("com.ProyectoF1.proyectof1.controllers.VotacionController.resultadosVotacion()");
+        return votacionesService.recuento(idVotacion);
     }
 }
