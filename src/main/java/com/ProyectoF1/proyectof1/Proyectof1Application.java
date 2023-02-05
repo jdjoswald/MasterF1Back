@@ -40,24 +40,11 @@ public class Proyectof1Application {
 
            
             
-           Circuito cir = new Circuito("Circuito de prueba", "ciudad", "pais", "trazado", 0, 0, 0, 0, 0,"foto");
-           circuitoService.guardarCircuito(cir);
+          
            
            rolesService.guardarRol(new Rol("Admin"));
            rolesService.guardarRol(new Rol("Team Manager"));
-           Usuario user=new Usuario("admin", "admin","admin@admin.com", "admin1234", rolesService.buscarPorId(1), null,true);
-           //user.setDefinitivo(true);
-           usuarioService.guardarUsuario(user);
           
-
-           Equipo equipo = new Equipo("logo","logoGrande","bandera","portada", "twitter", "nombre", "base", "teamChief", "techChief");
-
-           
-           equipoService.guardarEquipo(equipo);
-           
-            Piloto piloto = new Piloto("nombre", "apellidos", "siglas", "dorsal", "foto", "pais", "twitter");
-           piloto.setEquipo(equipo);
-            pilotoService.guardarPiloto(piloto);
            
            
            
