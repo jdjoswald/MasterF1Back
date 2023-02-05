@@ -2,6 +2,7 @@ package com.ProyectoF1.proyectof1.controllers;
 
 import com.ProyectoF1.proyectof1.model.Equipo;
 import com.ProyectoF1.proyectof1.model.Piloto;
+import com.ProyectoF1.proyectof1.service.IEquipoService;
 import com.ProyectoF1.proyectof1.service.IPilotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,6 +18,8 @@ public class pilotosController {
 
     @Autowired
     IPilotoService pilotosService;
+     @Autowired
+    IEquipoService equiposService;
 
     @GetMapping("/all")
     public List<Piloto> buscarTodos(){
@@ -58,6 +61,8 @@ public class pilotosController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public boolean actualizarPiloto(@RequestBody Piloto piloto) {
         
+      Equipo equipo=equiposService.buscarEquipoPorId(piloto.getEquipo().getId());
+        piloto.setEquipo(equipo);
         return pilotosService.actualizarPiloto(piloto);
     }
 

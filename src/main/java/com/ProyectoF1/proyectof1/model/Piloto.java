@@ -45,9 +45,8 @@ public class Piloto implements Serializable {
 
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
-
-    @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo", nullable = true)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo")
     @JsonIgnoreProperties("pilotos")
     private Equipo equipo;
 

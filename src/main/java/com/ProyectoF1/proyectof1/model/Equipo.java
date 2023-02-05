@@ -46,8 +46,8 @@ public class Equipo implements Serializable {
     private String techChief;
 
 
-    @OneToMany(mappedBy = "equipo", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties(value = {"equipo"}, allowSetters = true)
+    @OneToMany(mappedBy = "equipo")
+    @JsonIgnoreProperties(value = {"equipo"})
     private List<Piloto> Pilotos = new ArrayList<>();
 
 
