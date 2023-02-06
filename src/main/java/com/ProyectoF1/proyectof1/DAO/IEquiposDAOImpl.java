@@ -39,7 +39,7 @@ public class IEquiposDAOImpl implements IEquiposDAO {
 
 
     @Override
-    public void guardarEquipo(Equipo equipo) {equiposJPA.save(equipo);
+    public Equipo guardarEquipo(Equipo equipo) { return equiposJPA.save(equipo);
 
     }
 

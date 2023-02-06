@@ -1,8 +1,6 @@
 package com.ProyectoF1.proyectof1.service;
 
-import com.ProyectoF1.proyectof1.model.Coche;
 import com.ProyectoF1.proyectof1.model.Equipo;
-import com.ProyectoF1.proyectof1.model.Piloto;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,7 +15,7 @@ public interface IEquipoService {
 
     public Equipo buscarEquipoPorNombre (String nombre);
 
-    public boolean guardarEquipo(Equipo equipo);
+    public Equipo guardarEquipo(Equipo equipo);
 
     public boolean eliminarEquipo (Integer id);
 

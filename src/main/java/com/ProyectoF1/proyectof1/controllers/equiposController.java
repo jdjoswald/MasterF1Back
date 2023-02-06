@@ -35,9 +35,10 @@ public class equiposController {
     public List<Equipo> buscarEquipoPorBase(@PathVariable("base")String base){
         return equiposService.buscarEquipoPorBase(base);
     }
-    @PostMapping("/save")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public boolean crearEquipo(@RequestBody Equipo equipo){
+
+    @PostMapping("/save/{id}")
+    public Equipo crearEquipo(@RequestBody Equipo equipo){
+
         return equiposService.guardarEquipo(equipo);
     }
 
