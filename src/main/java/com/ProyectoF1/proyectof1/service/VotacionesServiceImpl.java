@@ -14,9 +14,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class VotacionesServiceImpl implements IVotacionService{
@@ -32,7 +34,7 @@ public class VotacionesServiceImpl implements IVotacionService{
 
     @Override
     public List<Votacion> buscarTodas() {
-        System.out.println("PASA POR VOTACIONES SERVICE");
+        
         return votacionDAO.buscarTodas();
     }
 
@@ -72,6 +74,15 @@ public class VotacionesServiceImpl implements IVotacionService{
 
     @Override
     public boolean guardarVotacion(Votacion votacion) {
+        System.out.println("PASA POR VOTACIONES SERVICE");
+         if( votacion.getPilotos()!=null){
+            List<Piloto> pilotos= new ArrayList<>();
+            votacion.getPilotos().forEach((e) -> { 
+                System.out.println(e.getId()); 
+                pilotos.add(pilotosDAO.buscarPilotoPorid(e.getId()));
+            });
+            votacion.setPilotos(pilotos);
+        }
         votacionDAO.guardarVotacion(votacion);
         return true;
     }

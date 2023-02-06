@@ -8,9 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tbl_piloto")
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+
 public class Piloto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +46,7 @@ public class Piloto implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo")
     @JsonIgnoreProperties("pilotos")
+    
     private Equipo equipo;
 
     public Piloto(String nombre, String apellidos, String siglas, String dorsal, String foto, String pais, String twitter) {
