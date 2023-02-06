@@ -2,6 +2,7 @@ package com.ProyectoF1.proyectof1.controllers;
 
 import com.ProyectoF1.proyectof1.model.Equipo;
 import com.ProyectoF1.proyectof1.model.Piloto;
+import com.ProyectoF1.proyectof1.service.IEquipoService;
 import com.ProyectoF1.proyectof1.service.IPilotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,11 +13,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("pilotos")
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class pilotosController {
 
     @Autowired
     IPilotoService pilotosService;
+     @Autowired
+    IEquipoService equiposService;
 
     @GetMapping("/all")
     public List<Piloto> buscarTodos(){
@@ -49,12 +52,17 @@ public class pilotosController {
         return pilotosService.buscarPilotoPorPais(pais);}
 
     @PostMapping("/save")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public boolean crearPiloto(@RequestBody Piloto piloto){
         return pilotosService.guardarPiloto(piloto);
     }
 
     @PutMapping("/update")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public boolean actualizarPiloto(@RequestBody Piloto piloto) {
+        
+      Equipo equipo=equiposService.buscarEquipoPorId(piloto.getEquipo().getId());
+        piloto.setEquipo(equipo);
         return pilotosService.actualizarPiloto(piloto);
     }
 
@@ -66,6 +74,7 @@ public class pilotosController {
     }
 
     @GetMapping(value="/image/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public @ResponseBody byte[] buscarPilotoimg(@PathVariable("id") int idPiloto) throws IOException {
         return pilotosService.buscarPilotoimg(idPiloto);}
 

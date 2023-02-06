@@ -14,8 +14,8 @@ import java.util.List;
 public interface ICircuitoDAO {
     
     List<Circuito> buscarTodos();
-   
     Circuito buscarPorId(Integer idCircuito);
+    List<Circuito> buscarPorNombre(String nombre);
     void guardarCircuito(Circuito circuito);
     void actualizarCircuito(Circuito circuito);
     void eliminarCircuito(Integer idCircuito);

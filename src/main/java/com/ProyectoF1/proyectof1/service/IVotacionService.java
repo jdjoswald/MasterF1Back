@@ -1,8 +1,10 @@
 package com.ProyectoF1.proyectof1.service;
+import com.ProyectoF1.proyectof1.model.Recuento;
 import com.ProyectoF1.proyectof1.model.Votacion;
 import com.ProyectoF1.proyectof1.model.Voto;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 public interface IVotacionService {
@@ -14,6 +16,8 @@ public interface IVotacionService {
 
 
     public List<Votacion> buscarVotacionPorTitulo(String titulo);
+    
+    public List<Recuento> recuento(Integer idVotacion);
 
 
     public List<Votacion> buscarVotacionesPorFechaInicio(LocalDate fechaInicio);
@@ -30,4 +34,5 @@ public interface IVotacionService {
 
     public boolean actualizarVotacion(Votacion votacion);
 
+    HashMap<String, Integer> resultadosVotacion(Integer idVotacion);
 }

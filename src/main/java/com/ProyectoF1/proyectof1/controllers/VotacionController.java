@@ -1,12 +1,14 @@
 package com.ProyectoF1.proyectof1.controllers;
 
-import com.ProyectoF1.proyectof1.model.Usuario;
+import com.ProyectoF1.proyectof1.model.Piloto;
+import com.ProyectoF1.proyectof1.model.Recuento;
 import com.ProyectoF1.proyectof1.model.Votacion;
 import com.ProyectoF1.proyectof1.model.Voto;
 import com.ProyectoF1.proyectof1.service.IVotacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -19,7 +21,7 @@ public class VotacionController {
 
     @GetMapping("/all")
     public List<Votacion> buscarTodas(){
-        System.out.println("PASA POR VOTACIONES CONTROLLER");
+       
         return votacionesService.buscarTodas();
     }
 
@@ -30,7 +32,7 @@ public class VotacionController {
 
     @PostMapping("/save")
     public boolean crearVotacion(@RequestBody Votacion votacion){
-
+ System.out.println("PASA POR VOTACIONES CONTROLLER");
         return votacionesService.guardarVotacion(votacion);
     }
 
@@ -50,5 +52,9 @@ public class VotacionController {
 
         return votacionesService.votar(idVotacion,voto);
     }
-
+    @GetMapping("/resultados/{idVotacion}")
+    public List<Recuento> resultadosVotacion(@PathVariable("idVotacion") Integer idVotacion){
+        System.out.println("com.ProyectoF1.proyectof1.controllers.VotacionController.resultadosVotacion()");
+        return votacionesService.recuento(idVotacion);
+    }
 }

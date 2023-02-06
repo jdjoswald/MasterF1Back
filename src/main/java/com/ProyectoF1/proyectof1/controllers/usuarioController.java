@@ -4,7 +4,9 @@
  */
 package com.ProyectoF1.proyectof1.controllers;
 
+import com.ProyectoF1.proyectof1.model.Rol;
 import com.ProyectoF1.proyectof1.model.Usuario;
+import com.ProyectoF1.proyectof1.service.IRolesService;
 import com.ProyectoF1.proyectof1.service.IUsuarioService;
 import java.util.*;
 import org.springframework.beans.factory.annotation.*;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 public class usuarioController {
     @Autowired
     IUsuarioService UsuarioService;
+    @Autowired
+    IRolesService RolService;
     
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/all")
@@ -45,24 +49,40 @@ public class usuarioController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/login/{email}/{passwd}")
-    public String login(@PathVariable("email")String email, @PathVariable("passwd")String passwd){
+    public Usuario login(@PathVariable("email")String email, @PathVariable("passwd")String passwd){
         return  UsuarioService.buscarUsuarioPorEmailAndPasswd(email, passwd);
       }
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/save")
     public boolean crearUsuario(@RequestBody Usuario usuario){
+           Rol rol= RolService.buscarPorId(usuario.getId_Rol().getId());
+        System.out.println(rol.getId());
+        usuario.setId_Rol(rol);
           return UsuarioService.guardarUsuario(usuario);
     }
     @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/update")
     public boolean actualizarUsuario(@RequestBody Usuario usuario) {
+        Rol rol= RolService.buscarPorId(usuario.getId_Rol().getId());
+        System.out.println(rol.getId());
+        usuario.setId_Rol(rol);
         return UsuarioService.actualizarUsuario(usuario);
     }
     @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("/aprobarUsuarios")
-    public boolean aprobarUsuario(@RequestBody List<Usuario> usuarios) {
-        return UsuarioService.aprobarUsuario(usuarios);
+
+    @PutMapping("/aprobarUsuario/{id}")
+    public boolean aprobarUsuario(@PathVariable("id") Integer id) {
+        return UsuarioService.aprobarUsuario(id);}
+
+    @PutMapping("/delTeam/{id}")
+    public boolean delTeam(@PathVariable("id")Integer id) {
+        
+      Usuario usuario =UsuarioService.buscarUsuarioPorid(id);
+      usuario.setIdEquipo(null);
+      
+      return UsuarioService.actualizarUsuario(usuario);
     }
+   
     @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping ("/delete/{email}")
     public boolean deleteUserById(@PathVariable("email") String email){

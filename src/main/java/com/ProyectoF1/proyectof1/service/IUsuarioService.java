@@ -13,7 +13,7 @@ public interface IUsuarioService {
     public Usuario buscarUsuarioPorid(Integer id);
     public List<Usuario> buscarUsuarioPorNombre(String nombre);
     
-    public String buscarUsuarioPorEmailAndPasswd(String email, String passwd);
+    public Usuario buscarUsuarioPorEmailAndPasswd(String email, String passwd);
     
     public Usuario buscarUsuarioporNUsuario(String usuario);
     
@@ -32,6 +32,6 @@ public interface IUsuarioService {
     
     public boolean actualizarUsuario(Usuario usuario);
 
-    public boolean aprobarUsuario(List<Usuario> usuario);
+    public boolean aprobarUsuario(Integer Id);
     
 }

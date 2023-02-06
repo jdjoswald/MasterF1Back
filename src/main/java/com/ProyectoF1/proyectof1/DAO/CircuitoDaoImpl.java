@@ -51,5 +51,10 @@ public class CircuitoDaoImpl implements ICircuitoDAO{
     public void eliminarCircuito(Integer idCircuito) {
         circuitoJPA.deleteById(idCircuito);
     }
+
+    @Override
+    public List<Circuito> buscarPorNombre(String nombre) {
+       return circuitoJPA.findByNombreContainingIgnoreCase(nombre);
+    }
     
 }

@@ -46,8 +46,8 @@ public class Equipo implements Serializable {
     private String techChief;
 
 
-    @OneToMany(mappedBy = "equipo", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("equipo")
+    @OneToMany(mappedBy = "equipo")
+    @JsonIgnoreProperties(value = {"equipo"})
     private List<Piloto> Pilotos = new ArrayList<>();
 
 
@@ -108,6 +108,14 @@ public class Equipo implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public List<Usuario> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<Usuario> users) {
+        this.users = users;
     }
 
     public String getLogo() {
