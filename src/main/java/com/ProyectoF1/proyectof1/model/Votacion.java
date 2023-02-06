@@ -1,6 +1,7 @@
 package com.ProyectoF1.proyectof1.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -8,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "tbl_votacion")
-public class Votacion {
+public class Votacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idVotacion", nullable = false)
@@ -39,10 +40,12 @@ public class Votacion {
     @JoinTable(name = "tbl_votacion_piloto", joinColumns = {
             @JoinColumn(name = "idVotacion", referencedColumnName = "idVotacion")}, inverseJoinColumns = {
             @JoinColumn(name = "idPiloto", referencedColumnName = "idPiloto")})
+    
     private List<Piloto> pilotos;
 
     @OneToMany(mappedBy = "idVotacion")
     @JsonIgnoreProperties("idVotacion")
+    
     private List<Voto> votos;
 
     public Integer getId() {

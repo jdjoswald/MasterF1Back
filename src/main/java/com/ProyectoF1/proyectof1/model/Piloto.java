@@ -3,6 +3,7 @@ package com.ProyectoF1.proyectof1.model;
 import com.fasterxml.jackson.annotation.*;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -45,9 +46,14 @@ public class Piloto implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo")
-    @JsonIgnoreProperties("pilotos")
-    
+    @JsonIgnoreProperties(value = {"tbl_piloto"}, allowSetters = true)
     private Equipo equipo;
+    
+     @ManyToMany(mappedBy = "pilotos", 
+                fetch = FetchType.EAGER, 
+                cascade = CascadeType.ALL)
+    @JsonIgnore
+     List<Votacion> votacion;
 
     public Piloto(String nombre, String apellidos, String siglas, String dorsal, String foto, String pais, String twitter) {
         this.nombre = nombre;
@@ -60,6 +66,10 @@ public class Piloto implements Serializable {
         this.twitter = twitter;
     }
 
+    public Piloto(Integer id) {
+        this.id = id;
+    }
+    
 
 
     public Piloto() {
