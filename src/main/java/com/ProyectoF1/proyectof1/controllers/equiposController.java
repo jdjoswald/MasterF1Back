@@ -36,7 +36,7 @@ public class equiposController {
         return equiposService.buscarEquipoPorBase(base);
     }
 
-    @PostMapping("/save/{id}")
+    @PostMapping("/save")
     public Equipo crearEquipo(@RequestBody Equipo equipo){
 
         return equiposService.guardarEquipo(equipo);
