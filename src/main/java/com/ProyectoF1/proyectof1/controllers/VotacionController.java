@@ -21,7 +21,7 @@ public class VotacionController {
 
     @GetMapping("/all")
     public List<Votacion> buscarTodas(){
-        System.out.println("PASA POR VOTACIONES CONTROLLER");
+       
         return votacionesService.buscarTodas();
     }
 
@@ -32,7 +32,7 @@ public class VotacionController {
 
     @PostMapping("/save")
     public boolean crearVotacion(@RequestBody Votacion votacion){
-
+ System.out.println("PASA POR VOTACIONES CONTROLLER");
         return votacionesService.guardarVotacion(votacion);
     }
 
