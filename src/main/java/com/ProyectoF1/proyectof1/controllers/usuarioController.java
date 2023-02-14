@@ -68,6 +68,17 @@ public class usuarioController {
         usuario.setId_Rol(rol);
         return UsuarioService.actualizarUsuario(usuario);
     }
+    
+      @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping("/update2")
+    public boolean actualizarUsuarioSinCOntrasenna(@RequestBody Usuario usuario) {
+        Rol rol= RolService.buscarPorId(usuario.getId_Rol().getId());
+        System.out.println(rol.getId());
+        usuario.setId_Rol(rol);
+        String oldpassword = UsuarioService.buscarUsuarioPorid(usuario.getId()).getContrasena();
+        usuario.setContrasena(oldpassword);
+        return UsuarioService.actualizarUsuario(usuario);
+    }
     @CrossOrigin(origins = "http://localhost:3000")
 
     @PutMapping("/aprobarUsuario/{id}")
