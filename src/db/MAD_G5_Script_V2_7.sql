@@ -233,7 +233,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 DROP TABLE IF EXISTS `uah_mad_g5`.`tbl_noticia` ;
 
 CREATE TABLE IF NOT EXISTS `uah_mad_g5`.`tbl_noticia` (
-  `idNoticia` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `permalink` VARCHAR(250) NULL DEFAULT NULL,
   `titulo` VARCHAR(150) NOT NULL,
   `imagen` LONGTEXT NULL DEFAULT NULL,
