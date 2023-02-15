@@ -44,9 +44,9 @@ INSERT INTO `uah_mad_g5`.`tbl_carrera_piloto` (`idCarreraPiloto`, `idCarrera`, `
 
 /*Insert tabla coches*/
 
-INSERT INTO `uah_mad_g5`.`tbl_coche` (`idCoche`, `nombre`, `codigo`, `ersCurvaLenta`, `ersCurvaMedia`, `ersCurvaRapida`, `consumo`, `idEquipo`) VALUES ('1', 'Ferrari F1-75', 'F1-75', '0.3', '0.1', '0.2', '1.6', '1');
-INSERT INTO `uah_mad_g5`.`tbl_coche` (`idCoche`, `nombre`, `codigo`, `ersCurvaLenta`, `ersCurvaMedia`, `ersCurvaRapida`, `consumo`, `idEquipo`) VALUES ('2', 'Ferrari SF21', 'SF21', '0.1', '0.2', '0.4', '1.6', '1');
-INSERT INTO `uah_mad_g5`.`tbl_coche` (`idCoche`, `nombre`, `codigo`, `ersCurvaLenta`, `ersCurvaMedia`, `ersCurvaRapida`, `consumo`, `idEquipo`) VALUES ('3', 'Alpine A522', 'A522', '0.2', '0.4', '0.1', '1.6', '2');
+INSERT INTO `uah_mad_g5`.`tbl_coche` (`idCoche`, `nombre`, `codigo`, `ersCurvaLenta`, `ersCurvaMedia`, `ersCurvaRapida`, `consumo`, `idEquipo`) VALUES ('1', 'Ferrari F1-75', 'F1-75', '0.3', '0.1', '0.2', '1.6', '1',null);
+INSERT INTO `uah_mad_g5`.`tbl_coche` (`idCoche`, `nombre`, `codigo`, `ersCurvaLenta`, `ersCurvaMedia`, `ersCurvaRapida`, `consumo`, `idEquipo`) VALUES ('2', 'Ferrari SF21', 'SF21', '0.1', '0.2', '0.4', '1.6', '1', null);
+INSERT INTO `uah_mad_g5`.`tbl_coche` (`idCoche`, `nombre`, `codigo`, `ersCurvaLenta`, `ersCurvaMedia`, `ersCurvaRapida`, `consumo`, `idEquipo`) VALUES ('3', 'Alpine A522', 'A522', '0.2', '0.4', '0.1', '1.6', '2', null);
 
 
 /*Insert tabla noticias*/
