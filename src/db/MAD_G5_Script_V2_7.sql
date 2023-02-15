@@ -239,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `uah_mad_g5`.`tbl_noticia` (
   `imagen` LONGTEXT NULL DEFAULT NULL,
   `idUsuario` INT NOT NULL,
   `texto` LONGTEXT NOT NULL,
-  PRIMARY KEY (`idNoticia`),
+  PRIMARY KEY (`id`),
   INDEX `fk_noticia_usuario_idx` (`idUsuario` ASC) VISIBLE,
   CONSTRAINT `fk_noticia_usuario`
     FOREIGN KEY (`idUsuario`)
