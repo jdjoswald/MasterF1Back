@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `uah_mad_g5`.`tbl_circuito` (
   `curvasLentas` INT NOT NULL DEFAULT '0',
   `curvasMedia` INT NOT NULL DEFAULT '0',
   `curvasRapidas` INT NOT NULL DEFAULT '0',
+  `foto` LONGTEXT NULL DEFAULT NULL,
   PRIMARY KEY (`circuitoId`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 3
@@ -54,6 +55,7 @@ CREATE TABLE IF NOT EXISTS `uah_mad_g5`.`tbl_carrera` (
   `circuitoId` INT NOT NULL,
   `imagen` LONGTEXT NULL DEFAULT NULL,
   `nombre` VARCHAR(150) NULL DEFAULT NULL,
+  `foto` LONGTEXT  NULL DEFAULT NULL,
   PRIMARY KEY (`idCarrera`),
   INDEX `fk_carrera_circuito_idx` (`circuitoId` ASC) VISIBLE,
   CONSTRAINT `fk_carrera_circuito`
@@ -155,6 +157,7 @@ CREATE TABLE IF NOT EXISTS `uah_mad_g5`.`tbl_coche` (
   `ersCurvaRapida` DOUBLE NULL DEFAULT NULL,
   `consumo` DOUBLE NULL DEFAULT NULL,
   `idEquipo` INT NULL DEFAULT NULL,
+  `foto` LONGTEXT NOT NULL,
   PRIMARY KEY (`idCoche`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 7
@@ -187,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `uah_mad_g5`.`tbl_usuario` (
   `email` VARCHAR(50) NOT NULL,
   `contrasena` VARCHAR(50) NOT NULL,
   `idRol` INT NOT NULL,
-  `idEquipo` INT NOT NULL,
+  `idEquipo` INT NULL,
   `definitivo` TINYINT NOT NULL DEFAULT '0',
   PRIMARY KEY (`idUsuario`),
   INDEX `fk_usuario_rol_idx` (`idRol` ASC) VISIBLE,
@@ -230,7 +233,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 DROP TABLE IF EXISTS `uah_mad_g5`.`tbl_noticia` ;
 
 CREATE TABLE IF NOT EXISTS `uah_mad_g5`.`tbl_noticia` (
-  `idNoticia` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `permalink` VARCHAR(250) NULL DEFAULT NULL,
   `titulo` VARCHAR(150) NOT NULL,
   `imagen` LONGTEXT NULL DEFAULT NULL,
