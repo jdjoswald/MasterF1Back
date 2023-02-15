@@ -40,7 +40,8 @@ public class Usuario {
     private Equipo idEquipo;
 
     @OneToMany(mappedBy = "Usuario", cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties(value = {"tbl_usuario"})
+    @JsonIgnoreProperties(value = {"Usuario"})
+    //@JsonIgnore
     private List<Votacion> votaciones;
 
     @Column(name = "definitivo", nullable = false)

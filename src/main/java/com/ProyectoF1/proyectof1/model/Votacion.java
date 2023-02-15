@@ -1,5 +1,7 @@
 package com.ProyectoF1.proyectof1.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 
@@ -40,7 +42,7 @@ public class Votacion implements Serializable {
     @JoinTable(name = "tbl_votacion_piloto", joinColumns = {
             @JoinColumn(name = "idVotacion", referencedColumnName = "idVotacion")}, inverseJoinColumns = {
             @JoinColumn(name = "idPiloto", referencedColumnName = "idPiloto")})
-    
+    @JsonIgnoreProperties(value = {"votacion"}, allowSetters = true)
     private List<Piloto> pilotos;
 
     @OneToMany(mappedBy = "idVotacion")

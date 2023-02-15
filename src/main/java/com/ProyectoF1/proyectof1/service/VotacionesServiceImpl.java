@@ -75,6 +75,7 @@ public class VotacionesServiceImpl implements IVotacionService{
     @Override
     public boolean guardarVotacion(Votacion votacion) {
         System.out.println("PASA POR VOTACIONES SERVICE");
+        
          if( votacion.getPilotos()!=null){
             List<Piloto> pilotos= new ArrayList<>();
             votacion.getPilotos().forEach((e) -> { 
@@ -83,6 +84,7 @@ public class VotacionesServiceImpl implements IVotacionService{
             });
             votacion.setPilotos(pilotos);
         }
+         
         votacionDAO.guardarVotacion(votacion);
         return true;
     }
