@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `uah_mad_g5`.`tbl_coche` (
   `ersCurvaRapida` DOUBLE NULL DEFAULT NULL,
   `consumo` DOUBLE NULL DEFAULT NULL,
   `idEquipo` INT NULL DEFAULT NULL,
-  `foto` LONGTEXT NOT NULL,
+  `foto` LONGTEXT NULL DEFAULT NULL,
   PRIMARY KEY (`idCoche`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 7
@@ -239,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `uah_mad_g5`.`tbl_noticia` (
   `imagen` LONGTEXT NULL DEFAULT NULL,
   `idUsuario` INT NOT NULL,
   `texto` LONGTEXT NOT NULL,
-  PRIMARY KEY (`idNoticia`),
+  PRIMARY KEY (`id`),
   INDEX `fk_noticia_usuario_idx` (`idUsuario` ASC) VISIBLE,
   CONSTRAINT `fk_noticia_usuario`
     FOREIGN KEY (`idUsuario`)
