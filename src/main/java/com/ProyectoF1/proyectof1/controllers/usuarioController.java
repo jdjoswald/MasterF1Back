@@ -6,6 +6,7 @@ package com.ProyectoF1.proyectof1.controllers;
 
 import com.ProyectoF1.proyectof1.model.Rol;
 import com.ProyectoF1.proyectof1.model.Usuario;
+import com.ProyectoF1.proyectof1.service.IEquipoService;
 import com.ProyectoF1.proyectof1.service.IRolesService;
 import com.ProyectoF1.proyectof1.service.IUsuarioService;
 import java.util.*;
@@ -20,6 +21,8 @@ public class usuarioController {
     IUsuarioService UsuarioService;
     @Autowired
     IRolesService RolService;
+     @Autowired
+     IEquipoService EquipoService;
     
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/all")
@@ -77,6 +80,13 @@ public class usuarioController {
         usuario.setId_Rol(rol);
         String oldpassword = UsuarioService.buscarUsuarioPorid(usuario.getId()).getContrasena();
         usuario.setContrasena(oldpassword);
+        return UsuarioService.actualizarUsuario(usuario);
+    }
+    
+    @PutMapping("/linkteam/{id}/{idTeam}")
+    public boolean linkTeam(@PathVariable("id") Integer id,@PathVariable("idTeam") Integer idTeam) {
+       Usuario usuario= UsuarioService.buscarUsuarioPorid(id);
+       usuario.setIdEquipo(EquipoService.buscarEquipoPorId(idTeam));
         return UsuarioService.actualizarUsuario(usuario);
     }
     @CrossOrigin(origins = "http://localhost:3000")
