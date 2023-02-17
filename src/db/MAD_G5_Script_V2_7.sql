@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `uah_mad_g5`.`tbl_circuito` (
   `nombre` VARCHAR(150) NOT NULL,
   `ciudad` VARCHAR(150) NOT NULL,
   `pais` VARCHAR(150) NULL DEFAULT NULL,
-  `trazado` VARCHAR(150) NULL DEFAULT NULL,
+  `trazado` LONGTEXT NULL DEFAULT NULL,
   `numeroVueltas` INT NOT NULL DEFAULT '0',
   `longitud` DOUBLE NOT NULL DEFAULT '0',
   `curvasLentas` INT NOT NULL DEFAULT '0',
