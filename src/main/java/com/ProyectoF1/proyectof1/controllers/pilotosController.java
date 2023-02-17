@@ -54,7 +54,13 @@ public class pilotosController {
     @PostMapping("/save")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public boolean crearPiloto(@RequestBody Piloto piloto){
-        return pilotosService.guardarPiloto(piloto);
+        System.out.println(piloto.getEquipo().getId());
+        Equipo equipo=equiposService.buscarEquipoPorId(piloto.getEquipo().getId());
+        List<Piloto> pilotos = equipo.getPilotos();
+        if(equipo.getPilotos().size()>2){
+            return false;}
+        else{ return pilotosService.guardarPiloto(piloto);}
+       
     }
 
     @PutMapping("/update")

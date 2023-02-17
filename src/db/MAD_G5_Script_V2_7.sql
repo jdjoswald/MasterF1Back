@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `uah_mad_g5`.`tbl_circuito` (
   `nombre` VARCHAR(150) NOT NULL,
   `ciudad` VARCHAR(150) NOT NULL,
   `pais` VARCHAR(150) NULL DEFAULT NULL,
-  `trazado` VARCHAR(150) NULL DEFAULT NULL,
+  `trazado` LONGTEXT NULL DEFAULT NULL,
   `numeroVueltas` INT NOT NULL DEFAULT '0',
   `longitud` DOUBLE NOT NULL DEFAULT '0',
   `curvasLentas` INT NOT NULL DEFAULT '0',
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `uah_mad_g5`.`tbl_coche` (
   `ersCurvaRapida` DOUBLE NULL DEFAULT NULL,
   `consumo` DOUBLE NULL DEFAULT NULL,
   `idEquipo` INT NULL DEFAULT NULL,
-  `foto` LONGTEXT NOT NULL,
+  `foto` LONGTEXT NULL DEFAULT NULL,
   PRIMARY KEY (`idCoche`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 7

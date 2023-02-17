@@ -8,7 +8,7 @@ import java.util.List;
 public interface ICochesJPA extends JpaRepository<Coche,Integer> {
 
     public List<Coche> findByNombreContainingIgnoreCase(String nombre);
-
+   // public List<Coche> findByEquipo(Integer idequipo);
     public Coche findByCodigoContainingIgnoreCase(String codigo);
 
 }

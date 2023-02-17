@@ -42,9 +42,7 @@ public class Proyectof1Application {
             
           
            
-           rolesService.guardarRol(new Rol("Admin"));
-           rolesService.guardarRol(new Rol("Team Manager"));
-          
+  
            
            
            

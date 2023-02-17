@@ -50,7 +50,7 @@ public class Circuito {
     private int curvasMedia;
      @Column(name = "curvasRapidas", nullable = false)
     private int curvasRapidas;
-        @Column(name = "foto", nullable = false, columnDefinition = "LONGTEXT")
+        @Column(name = "foto", nullable =true, columnDefinition = "LONGTEXT")
     private String foto;
     @OneToMany(mappedBy = "circuito", fetch = FetchType.EAGER)
     @JsonIgnoreProperties(value = {"Tbl_circuito"})

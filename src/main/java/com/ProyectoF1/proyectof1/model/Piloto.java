@@ -45,15 +45,19 @@ public class Piloto implements Serializable {
 
 
     @ManyToOne(fetch = FetchType.EAGER, optional = true)
-    @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo")
-    @JsonIgnoreProperties(value = {"tbl_piloto"}, allowSetters = true)
+    @JoinColumn(name = "idEquipo",referencedColumnName = "idEquipo" )
+    @JsonIgnoreProperties(value = {"Pilotos"}, allowSetters = true)
+    @JsonBackReference
+   // @JsonIgnore
     private Equipo equipo;
     
      @ManyToMany(mappedBy = "pilotos", 
                 fetch = FetchType.EAGER, 
                 cascade = CascadeType.ALL)
-    @JsonIgnore
-     List<Votacion> votacion;
+    //@JsonIgnoreProperties(value = {"pilotos"}, allowSetters = true)
+    //@JsonIgnore 
+    //@JsonBackReference
+    List<Votacion> votacion;
 
     public Piloto(String nombre, String apellidos, String siglas, String dorsal, String foto, String pais, String twitter) {
         this.nombre = nombre;
@@ -73,6 +77,22 @@ public class Piloto implements Serializable {
 
 
     public Piloto() {
+    }
+
+    public String getBandera() {
+        return bandera;
+    }
+
+    public void setBandera(String bandera) {
+        this.bandera = bandera;
+    }
+
+    public List<Votacion> getVotacion() {
+        return votacion;
+    }
+
+    public void setVotacion(List<Votacion> votacion) {
+        this.votacion = votacion;
     }
 
 
