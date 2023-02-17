@@ -45,7 +45,7 @@ public class VotacionController {
 
     @DeleteMapping ("/delete/{id}")
     public boolean deleteUserById(@PathVariable("id") Integer id){
-
+          
         return votacionesService.eliminarVotacion(id);
     }
     @PostMapping("/votar/{idVotacion}")

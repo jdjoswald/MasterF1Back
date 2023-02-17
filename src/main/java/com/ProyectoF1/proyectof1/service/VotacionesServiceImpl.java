@@ -91,13 +91,20 @@ public class VotacionesServiceImpl implements IVotacionService{
 
     @Override
     public boolean eliminarVotacion(Integer id) {
+        
+          
         Votacion votacion = votacionDAO.buscarVotacionPorid(id);
+        votacion.setPilotos(null);
+        votacionDAO.actualizarVotacion(votacion);
         if (votacion != null){
+            
             List<Voto> votos= votacionDAO.deleteVotos(votacion);
             votosDAO.eliminarVotos(votos);
+        
             votacionDAO.eliminarVotacion(id);
             return true;
         }
+          votacionDAO.eliminarVotacion(id);
         return false;
     }
 

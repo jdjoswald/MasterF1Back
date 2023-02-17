@@ -55,7 +55,13 @@ public class VotacionDAOImpl implements IVotacionDAO{
 
     @Override
     public void eliminarVotacion(Integer id) {
+                 Votacion votacion =  buscarVotacionPorid(id);
+                 votacion.setPilotos(null);
+                 //votacionJPA.save(votacion);
+                
+        //votacionJPA.deleteById(id);
         votacionJPA.deleteById(id);
+        
     }
 
     @Override
